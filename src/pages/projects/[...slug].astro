@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import ExtLink from "@components/ExtLink.astro";
+export async function getStaticPaths() {
+    const renameEntries = await getCollection("projects");
+    return renameEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry }
+    }));
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.name}>
+    <div class="grid">
+        <hgroup>
+            <h1>{entry.data.name}</h1>
+            <h2>
+                {entry.data.timespan.from}{
+                    entry.data.timespan.to && <> - {entry.data.timespan.to}</>
+                } |
+                {entry.data.tags.join(" • ")}
+            </h2>
+        </hgroup>
+        <div class="links">
+            {entry.data.links.github && 
+                <span>
+                    <ExtLink href={`https://github.com/${entry.data.links.github}`}>GitHub</ExtLink>  
+                </span>
+            }
+            {entry.data.links.other &&
+                Object.keys(entry.data.links.other).map(k => (
+                    <span>
+                        <ExtLink href={entry.data.links.other[k]}>{k}</ExtLink>    
+                    </span>
+                ))    
+            }
+        </div>
+    </div>
+    <Content />
+</Layout>
+
+<style>
+    .grid > hgroup {
+        margin-bottom: 0;
+    }
+
+    .grid {
+        background-color: var(--card-sectionning-background-color);
+        padding: var(--spacing);
+        border-radius: 5px;
+        margin-bottom: calc(var(--spacing) * 5) !important;
+    }
+
+    .links {
+        display: flex;
+        align-content: center;
+        justify-content: end;
+        gap: var(--spacing);
+    }
+
+    .links > span {
+        display: flex;
+        align-items: center;
+    }
+</style>

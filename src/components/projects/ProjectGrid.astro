@@ -1,0 +1,18 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const projectEntries = await getCollection("projects");
+---
+
+<div>
+    {projectEntries.map((p) => <ProjectCard project={p} />)}
+</div>
+
+<style>
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--spacing);
+    }
+</style>

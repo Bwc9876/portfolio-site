@@ -1,0 +1,61 @@
+---
+import { Image } from "@astrojs/image/components";
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+    project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<article>
+    <header>
+        <div>
+            <a href={`/projects/${project.slug}/`}>
+                <Image
+                    width={1920}
+                    height={1800}
+                    format="webp"
+                    position="center"
+                    alt={project.data.name}
+                    src={`/project-images/${project.data.image ?? "default"}.webp`}
+                />
+            </a>
+        </div>
+        <strong class="project-name">{project.data.name}</strong>
+    </header>
+    {project.data.summary}
+    <footer>
+        <small>{project.data.tags.join(" • ")}</small>
+    </footer>
+</article>
+
+<style>
+    
+    article {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    article:hover img {
+        transform: scale(1.25);
+    }
+
+    header > div {
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: var(--spacing);
+    }
+
+    header > strong {
+        font-size: larger;
+    }
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
+    }
+</style>

@@ -1,0 +1,16 @@
+---
+import type { IconType } from "react-icons";
+import ExtLink from "./ExtLink.astro";
+
+export interface Props {
+    href: string;
+    label: string;
+    placement: "top" | "left" | "right" | "bottom";
+}
+
+const { href, label, placement } = Astro.props;
+---
+
+<ExtLink data-tooltip={label} data-placement={placement} href={href}>
+    <slot />
+</ExtLink>

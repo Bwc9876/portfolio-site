@@ -7,6 +7,8 @@
             "@components/*": ["src/components/*"],
             "@assets/*": ["src/assets/*"],
             "@images/*": ["src/images/*"]
-        }
+        },
+        "jsx": "react-jsx",
+        "jsxImportSource": "react"
     }
 }

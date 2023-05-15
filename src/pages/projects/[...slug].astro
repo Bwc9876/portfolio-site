@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import ExtLink from "@components/ExtLink.astro";
+import IconLink from "@components/IconLink.astro";
+import { BsGithub, BsLink45Deg } from "react-icons/bs";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
     return renameEntries.map((entry) => ({
@@ -25,17 +27,28 @@ const { Content } = await entry.render();
             </h2>
         </hgroup>
         <div class="links">
-            {entry.data.links.github && 
-                <span>
-                    <ExtLink href={`https://github.com/${entry.data.links.github}`}>GitHub</ExtLink>  
-                </span>
-            }
-            {entry.data.links.other &&
-                Object.keys(entry.data.links.other).map(k => (
+            {
+                entry.data.links.github && (
                     <span>
-                        <ExtLink href={entry.data.links.other[k]}>{k}</ExtLink>    
+                        <IconLink
+                            label="GitHub"
+                            placement="left"
+                            href={`https://github.com/${entry.data.links.github}`}
+                        >
+                            <BsGithub size="25px" />
+                        </IconLink>
                     </span>
-                ))    
+                )
+            }
+            {
+                entry.data.links.other &&
+                    Object.keys(entry.data.links.other).map((k) => (
+                        <span>
+                            <IconLink href={entry.data.links.other[k]} placement="left" label={k}>
+                                <BsLink45Deg size="25px" />
+                            </IconLink>
+                        </span>
+                    ))
             }
         </div>
     </div>

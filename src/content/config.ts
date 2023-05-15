@@ -10,13 +10,15 @@ const projectsCollection = defineCollection({
             to: z.number().or(z.string()).optional()
         }),
         image: z.string().optional(),
-        links: z.object({
-            github: z.string().optional(),
-            other: z.record(z.string()).optional()
-        }).optional()
-    }),
+        links: z
+            .object({
+                github: z.string().optional(),
+                other: z.record(z.string()).optional()
+            })
+            .optional()
+    })
 });
 
 export const collections = {
-    "projects": projectsCollection
-}
+    projects: projectsCollection
+};

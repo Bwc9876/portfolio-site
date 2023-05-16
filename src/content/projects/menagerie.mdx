@@ -1,0 +1,33 @@
+---
+name: Menagerie
+summary: A simple and quick SSG framework for documentation sites
+timespan:
+    from: 2022
+tags:
+    - web
+    - bootstrap
+    - python
+    - jinja
+links:
+    github: Bwc9876/menagerie
+    other:
+        Docs: https://bwc9876.github.io/menagerie/
+image:
+    src: https://bwc9876.github.io/menagerie/images/logo.svg
+    width: 400
+    height: 400
+---
+
+import ExtLink from "@components/ExtLink.astro";
+export const components = { a: ExtLink };
+
+Menagerie is a simple SSG framework for generating documentation sites from
+simple markdown files. It's main feature is its ability to create pages for schema
+pages. It uses Python and [Jinja](https://jinja.palletsprojects.com/en/3.1.x/)
+for generating the site,
+[Bootstrap](https://getbootstrap.com/) for styling, and
+[json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)
+
+This was my first public package, I learned a lot when making like how to make
+python packages and designing a framework that other people will use.
+It was made to create the [New Horizons Docs](https://nh.outerwildsmods.com).

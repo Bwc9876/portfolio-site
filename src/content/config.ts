@@ -9,7 +9,13 @@ const projectsCollection = defineCollection({
             from: z.number(),
             to: z.number().or(z.string()).optional()
         }),
-        image: z.string().optional(),
+        image: z
+            .object({
+                src: z.string(),
+                width: z.number(),
+                height: z.number()
+            })
+            .optional(),
         links: z
             .object({
                 github: z.string().optional(),

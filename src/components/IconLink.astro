@@ -1,16 +1,18 @@
 ---
-import type { IconType } from "react-icons";
+import { Icon } from "astro-icon";
 import ExtLink from "./ExtLink.astro";
 
 export interface Props {
     href: string;
+    icon: string;
+    size: number;
     label: string;
     placement: "top" | "left" | "right" | "bottom";
 }
 
-const { href, label, placement } = Astro.props;
+const { href, label, placement, icon, size } = Astro.props;
 ---
 
 <ExtLink data-tooltip={label} data-placement={placement} href={href}>
-    <slot />
+    <Icon width={size} height={size} name={`bi:${icon}`} />
 </ExtLink>

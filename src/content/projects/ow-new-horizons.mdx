@@ -1,0 +1,47 @@
+---
+name: Outer Wilds New Horizons
+summary: A modding framework for creating custom content in Outer Wilds
+timespan:
+    from: 2021
+tags:
+    - c#
+    - unity
+    - outer-wilds
+links:
+    github: Outer-Wilds-New-Horizons/new-horizons
+    other:
+        Documentation Site: https://nh.outerwildsmods.com/
+image:
+    src: https://nh.outerwildsmods.com/images/home/home_logo.webp
+    width: 1200
+    height: 400
+---
+
+import ExtLink from "@components/ExtLink.astro";
+export const components = { a: ExtLink };
+
+For a few years I've been contributing to New Horizons,
+a modding framework for generating Outer Wilds planets from simple JSON and XML files.
+
+Some of my contributions include:
+
+- Adding custom ship logs
+- Adding a "Reload Configs" button for refreshing JSON files without needing to
+restart the game
+- Implementing various
+[CI/CD pipelines](https://github.com/Outer-Wilds-New-Horizons/new-horizons/tree/main/.github/workflows)
+with GitHub Actions.
+- Implementing a schema exporter system to allow for generation of JSON schemas
+from C# classes
+- Writing & Implementing The
+[Documentation Site](https://nh.outerwildsmods.com/) (made with [menagerie](/projects/menagerie))
+
+New Horizons was my first time working in a team and collaborating with others
+on code, it took some getting used to but in the end this project has given
+invaluable skills in being a team-player.
+
+The documentation website was also fun to implement, while I did
+this part solo, the docs made me realize how much I enjoy writing
+documentation and guides to help others. [Menagerie](/projects/menagerie) was
+built because of the NH docs, I wanted to make a simple SSG system that supported
+JSON schemas.

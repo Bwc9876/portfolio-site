@@ -2,11 +2,30 @@
 import ProjectCard from "./ProjectCard.astro";
 import { getCollection } from "astro:content";
 
+export interface Props {
+    limitTo?: number;
+}
+
 const projectEntries = await getCollection("projects");
+let entries = projectEntries.sort((a, b) => {
+    const [yearA, yearB] = [a.data.timespan.from, b.data.timespan.from];
+    if (yearA === yearB) {
+        return 0;
+    } else if (yearA > yearB) {
+        return -1;
+    } else {
+        return 1;
+    }
+});
+
+const { limitTo } = Astro.props;
+if (limitTo) {
+    entries = entries.slice(0, limitTo);
+}
 ---
 
 <div>
-    {projectEntries.map((p) => <ProjectCard project={p} />)}
+    {entries.map((p) => <ProjectCard project={p} />)}
 </div>
 
 <style>

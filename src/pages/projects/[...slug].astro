@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "@astrojs/image/components";
 import Layout from "@layouts/Layout.astro";
-import ExtLink from "@components/ExtLink.astro";
 import IconLink from "@components/IconLink.astro";
-import { BsGithub, BsLink45Deg } from "react-icons/bs";
+import defaultSrc from "@images/default-project-image.webp";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
     return renameEntries.map((entry) => ({
@@ -16,61 +16,84 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.name}>
-    <div class="grid">
+    <header>
+        <div class="img-container">
+            <Image
+                fit="inside"
+                position="center"
+                format="webp"
+                background="#18232C"
+                width={entry.data.image?.width ?? 474}
+                height={entry.data.image?.height ?? 474}
+                alt={entry.data.name}
+                src={entry.data.image?.src ?? defaultSrc}
+            />
+        </div>
         <hgroup>
             <h1>{entry.data.name}</h1>
             <h2>
                 {entry.data.timespan.from}{
                     entry.data.timespan.to && <> - {entry.data.timespan.to}</>
-                } |
+                } •
                 {entry.data.tags.join(" • ")}
             </h2>
         </hgroup>
         <div class="links">
             {
-                entry.data.links.github && (
+                entry.data.links?.github && (
                     <span>
                         <IconLink
+                            icon="github"
+                            size={25}
                             label="GitHub"
-                            placement="left"
+                            placement="bottom"
                             href={`https://github.com/${entry.data.links.github}`}
-                        >
-                            <BsGithub size="25px" />
-                        </IconLink>
+                        />
                     </span>
                 )
             }
             {
-                entry.data.links.other &&
+                entry.data.links?.other &&
                     Object.keys(entry.data.links.other).map((k) => (
                         <span>
-                            <IconLink href={entry.data.links.other[k]} placement="left" label={k}>
-                                <BsLink45Deg size="25px" />
-                            </IconLink>
+                            <IconLink
+                                icon="link-45deg"
+                                size={25}
+                                href={entry.data.links.other[k]}
+                                placement="bottom"
+                                label={k}
+                            />
                         </span>
                     ))
             }
         </div>
-    </div>
+    </header>
     <Content />
 </Layout>
 
 <style>
-    .grid > hgroup {
-        margin-bottom: 0;
+    header > hgroup {
+        margin-bottom: var(--spacing);
     }
 
-    .grid {
+    header > div.img-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    header {
         background-color: var(--card-sectionning-background-color);
         padding: var(--spacing);
         border-radius: 5px;
         margin-bottom: calc(var(--spacing) * 5) !important;
+        text-align: center;
     }
 
     .links {
         display: flex;
         align-content: center;
-        justify-content: end;
+        justify-content: center;
         gap: var(--spacing);
     }
 

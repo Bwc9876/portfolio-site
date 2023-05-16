@@ -13,7 +13,6 @@ export default defineConfig({
         image({
             serviceEntryPoint: "@astrojs/image/sharp"
         }),
-        sitemap(),
-        react()
+        sitemap()
     ]
 });

@@ -1,9 +1,15 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import ProjectGrid from "@components/projects/ProjectGrid.astro";
+import { getCollection } from "astro:content";
+
+const projectEntries = (await getCollection("projects")).length;
 ---
 
 <Layout title="Projects">
-    <h1>My Projects</h1>
+    <hgroup>
+        <h1>My Projects</h1>
+        <h2>Sorted By Year • {projectEntries} Total</h2>
+    </hgroup>
     <ProjectGrid />
 </Layout>

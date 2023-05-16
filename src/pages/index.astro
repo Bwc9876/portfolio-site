@@ -17,12 +17,18 @@ import Layout from "@layouts/Layout.astro";
     </p>
     <p>
         I like to try a lot of things, from <ExtLink href="#">modding games</ExtLink>
-        to building <ExtLink href="#">websites</ExtLink> and <ExtLink href="#">
+        to building <ExtLink href="#">websites</ExtLink> and <ExtLink href="/projects/ow-mod-man">
             desktop apps
         </ExtLink>. I enjoy pretty much any aspect of software development.
     </p>
     <p>On this site you'll find my current and past projects.</p>
 
-    <h2>Projects</h2>
-    <ProjectGrid />
+    <hgroup>
+        <h1>Recent Projects</h1>
+        <h2>Sorted By Date</h2>
+    </hgroup>
+    <ProjectGrid limitTo={6} />
+    <div class="view-more">
+        <a href="/projects">View All</a>
+    </div>
 </Layout>

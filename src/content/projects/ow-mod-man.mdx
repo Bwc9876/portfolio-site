@@ -1,0 +1,48 @@
+---
+name: Outer Wilds Mod Manager
+summary: A fully-featured manager for Outer Wilds mods
+timespan:
+    from: 2023
+tags:
+    - tauri
+    - rust
+    - web
+    - react
+    - outer-wilds
+links:
+    github: Bwc9876/ow-mod-man
+    other:
+        Mods Website: https://outerwildsmods.com/mod-manager
+image:
+    src: https://github.com/Bwc9876/ow-mod-man/blob/main/.github/assets/screenshots/main.png?raw=true
+    width: 600
+    height: 518
+---
+
+import ExtLink from "@components/ExtLink.astro";
+export const components = { a: ExtLink };
+
+This was my first fully-fledged desktop app, it was made with [Tauri](https://tauri.app)
+which is a frontend-agnostic application development framework that uses Rust.
+
+For the frontend portion I went with [React](https://react.dev/) as the UI framework
+and [Pico CSS](https://picocss.com/) for styling.
+
+It was based on the [old mod manager](https://github.com/ow-mods/ow-mod-manager)
+and tried to improve functionality and Linux support.
+
+Development took a little bit over 4 months, I made a
+[core package](https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_core)
+ so anyone can interface with mods, a
+ [CLI](https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_cli) for
+ easily managing mods without a full GUI,
+ and a [GUI](https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_gui) for
+ user-friendliness.
+
+It was my first time distributing a full app to multiple sources and testing
+compatibility across multiple platforms. Getting Steam Deck support via [Flathub](https://flathub.org/apps/com.outerwildsmods.owmods_gui)
+was especially challenging.
+
+In hindsight, I think that Pico CSS wasn't a great fit for this project as it's
+more oriented towards simple static sites.
+Something like Material UI might have worked better.

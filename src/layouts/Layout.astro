@@ -2,7 +2,6 @@
 import { Image } from "@astrojs/image/components";
 import IconLink from "@components/IconLink.astro";
 import "@picocss/pico/css/pico.min.css";
-import github from "bootstrap-icons/icons/github.svg";
 
 export interface Props {
     title: string;
@@ -16,12 +15,12 @@ const { title } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
         <meta name="generator" content={Astro.generator} />
         <title>{title} | Bwc9876</title>
     </head>
     <body>
-        <nav class="container-fluid">
+        <nav class="container">
             <ul>
                 <li>
                     <a class="nav-icon-link" href="/"

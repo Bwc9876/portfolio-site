@@ -1,5 +1,4 @@
 ---
-import ExtLink from "@components/ExtLink.astro";
 import ProjectGrid from "@components/projects/ProjectGrid.astro";
 import Layout from "@layouts/Layout.astro";
 ---
@@ -16,19 +15,27 @@ import Layout from "@layouts/Layout.astro";
         program in my spare time as well.
     </p>
     <p>
-        I like to try a lot of things, from <ExtLink href="#">modding games</ExtLink>
-        to building <ExtLink href="#">websites</ExtLink> and <ExtLink href="/projects/ow-mod-man">
+        I like to try a lot of things, from <a href="/projects/ow-new-horizons"> modding games</a>
+        to building <a href="/projects/menagerie">websites</a> and <a href="/projects/ow-mod-man">
             desktop apps
-        </ExtLink>. I enjoy pretty much any aspect of software development.
+        </a>. I enjoy pretty much any aspect of software development.
     </p>
     <p>On this site you'll find my current and past projects.</p>
 
     <hgroup>
-        <h1>Recent Projects</h1>
-        <h2>Sorted By Date</h2>
+        <h2>Recent Projects</h2>
+        <h3>Sorted By Date</h3>
     </hgroup>
     <ProjectGrid limitTo={6} />
     <div class="view-more">
         <a href="/projects">View All</a>
     </div>
 </Layout>
+
+<style>
+    .view-more {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+</style>

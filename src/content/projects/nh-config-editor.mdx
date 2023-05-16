@@ -1,0 +1,30 @@
+---
+name: New Horizons Config Editor
+summary: A GUI-based editor for New Horizons configs
+timespan:
+    from: 2022
+tags:
+    - tauri
+    - rust
+    - web
+    - react
+    - bootstrap
+    - outer-wilds
+links:
+    github: Outer-Wilds-New-Horizons/nh-config-editor
+    other:
+        Website: https://nh.outerwildsmods.com/editor.html
+image:
+    src: https://user-images.githubusercontent.com/25644444/184557668-6710d0ab-bcc2-410e-af72-8877270bc5c8.png
+    width: 500
+    height: 500
+---
+
+import ExtLink from "@components/ExtLink.astro";
+export const components = { a: ExtLink };
+
+The config editor is a desktop I made to make editing [New Horizons](https://nh.outerwildsmods.com) config files easier. It uses React for UI and Bootstrap for styling. The forms were create with [React JSON Schema Form](https://github.com/rjsf-team/react-jsonschema-form). The backend was made with Rust and it's all tied together by [Tauri](https://tauri.app).
+
+The app auto-generates UI from json schemas, meaning no updates are needed as New Horizons itself updates. In addition to form-based editing, it also support editing text directly with [Monaco](https://microsoft.github.io/monaco-editor/) which provides a VSCode-like experience. It also validates some other things beyond simple type checking that VSCode can't do with a JSON schema.
+
+This was my first Tauri app so i definitely made some mistakes, but it made me really like tauri and how it handled everything.

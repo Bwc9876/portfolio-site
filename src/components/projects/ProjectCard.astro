@@ -3,6 +3,11 @@ import { Image } from "@astrojs/image/components";
 import defaultSrc from "@images/default-project-image.webp";
 import type { CollectionEntry } from "astro:content";
 
+export const getGithubOpenGraph = (repoDouble: string) => {
+    const hash = Math.random() * 1000;
+    return `https://opengraph.githubassets.com/${hash}/${repoDouble}`;
+};
+
 export interface Props {
     project: CollectionEntry<"projects">;
 }
@@ -20,7 +25,8 @@ const { project } = Astro.props;
                     format="webp"
                     position="center"
                     alt={project.data.name}
-                    src={project.data.image?.src ?? defaultSrc.src}
+                    src={project.data.image?.src ??
+                        getGithubOpenGraph(project.data.links?.github ?? "Not Found")}
                 />
             </div>
             <strong class="project-name">{project.data.name}</strong>
@@ -41,7 +47,7 @@ const { project } = Astro.props;
     }
 
     article:hover {
-        transform: translateY(calc(var(--spacing) * -1));
+        transform: translateY(calc(var(--spacing) * -0.5));
         transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
     }
 

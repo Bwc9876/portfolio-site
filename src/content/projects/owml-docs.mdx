@@ -1,0 +1,31 @@
+---
+name: Outer Wilds Mod Loader Docs
+summary: Documentation for the Outer Wilds Mod Loader
+timespan:
+    from: 2022
+tags:
+    - web
+    - bootstrap
+    - python
+    - jinja
+    - outer-wilds
+links:
+    github: ow-mods/owml
+    other:
+        Mods Website: https://owml.outerwildsmods.com/
+image:
+    src: https://owml.outerwildsmods.com/images/owmllogo.webp
+    width: 500
+    height: 500
+---
+
+import ExtLink from "@components/ExtLink.astro";
+export const components = { a: ExtLink };
+
+The OWML docs were a quick project I did to try and help centralize information about how to use OWML and mod Outer Wilds in general.
+
+I found that there wasn't a very good "getting started" guide ad there was outdated information on OWML's README so I decided to go and make a docs site.
+
+It features a getting started guide, schemas for configs and manifests, and reference for how to use the `ModHelper` utility.
+
+The site was made with [menagerie](/projects/menagerie) and styled a bit with [SASS](https://sass-lang.com/).

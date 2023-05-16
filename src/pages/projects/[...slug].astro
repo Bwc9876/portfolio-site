@@ -4,6 +4,7 @@ import { Image } from "@astrojs/image/components";
 import Layout from "@layouts/Layout.astro";
 import IconLink from "@components/IconLink.astro";
 import defaultSrc from "@images/default-project-image.webp";
+import { getGithubOpenGraph } from "@components/projects/ProjectCard.astro";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
     return renameEntries.map((entry) => ({
@@ -26,7 +27,7 @@ const { Content } = await entry.render();
                 width={entry.data.image?.width ?? 474}
                 height={entry.data.image?.height ?? 474}
                 alt={entry.data.name}
-                src={entry.data.image?.src ?? defaultSrc.src}
+                src={entry.data.image?.src ?? getGithubOpenGraph(entry.data.links.github)}
             />
         </div>
         <hgroup>

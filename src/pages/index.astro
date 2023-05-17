@@ -23,16 +23,17 @@ import Layout from "@layouts/Layout.astro";
 
     <hgroup>
         <h2>Recent Projects</h2>
-        <h3>Sorted By Date</h3>
+        <h3>Sorted By Year</h3>
     </hgroup>
     <ProjectGrid limitTo={6} />
     <div class="view-more">
-        <a href="/projects">View All</a>
+        <a href="/projects">View All Projects</a>
     </div>
 </Layout>
 
 <style>
     .view-more {
+        margin-top: var(--spacing);
         display: flex;
         justify-content: center;
         width: 100%;

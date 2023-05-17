@@ -1,23 +1,64 @@
 ---
 import { Image } from "@astrojs/image/components";
+import { getImage } from "@astrojs/image";
 import IconLink from "@components/IconLink.astro";
 import "@picocss/pico/css/pico.min.css";
 
+import defaultOg from "@images/default-og.png";
+
 export interface Props {
     title: string;
+    description?: string;
+    keywords?: string[];
+    og?: {
+        src: string;
+        alt: string;
+    };
 }
 
-const { title } = Astro.props;
+const { title, description: oldDescription, keywords, og: oldOg } = Astro.props;
+
+const og = oldOg ?? { src: defaultOg.src, alt: "Ben C's Avatar" };
+
+const ogImg = await getImage({
+    format: "webp",
+    width: 1920,
+    height: 1080,
+    position: "center",
+    fit: "inside",
+    background: "white",
+    ...og
+});
+
+og.src = `${Astro.url.origin}${ogImg.src}`;
+
+const description = oldDescription ?? "Ben C's software development portfolio";
+const fullTitle = `${title} | Ben C`;
+const canonical = Astro.url.toString();
 ---
 
 <!DOCTYPE html>
 <html data-theme="dark" lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={["portfolio"].concat(keywords ?? []).join(", ")} />
         <meta name="generator" content={Astro.generator} />
-        <title>{title} | Bwc9876</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={og.src} />
+        <meta property="og:image:alt" content={og.alt} />
+        <meta name="twitter:title" content={fullTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={og.src} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" href="/favicon.png" />
+        <title>{fullTitle}</title>
     </head>
     <body>
         <nav class="container">

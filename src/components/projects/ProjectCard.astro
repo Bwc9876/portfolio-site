@@ -1,18 +1,18 @@
 ---
 import { Image } from "@astrojs/image/components";
-import defaultSrc from "@images/default-project-image.webp";
+import getProjectImageSrc from "@images/utils";
 import type { CollectionEntry } from "astro:content";
-
-export const getGithubOpenGraph = (repoDouble: string) => {
-    const hash = Math.random() * 1000;
-    return `https://opengraph.githubassets.com/${hash}/${repoDouble}`;
-};
 
 export interface Props {
     project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
+
+const src = await getProjectImageSrc(
+    project.data.links?.github ?? "Not Found",
+    project.data.image?.src
+);
 ---
 
 <article>
@@ -22,11 +22,10 @@ const { project } = Astro.props;
                 <Image
                     width={500}
                     height={500}
-                    format="webp"
                     position="center"
+                    format="webp"
+                    src={src}
                     alt={project.data.name}
-                    src={project.data.image?.src ??
-                        getGithubOpenGraph(project.data.links?.github ?? "Not Found")}
                 />
             </div>
             <strong class="project-name">{project.data.name}</strong>
@@ -40,8 +39,8 @@ const { project } = Astro.props;
 
 <style>
     article {
-        margin-bottom: 0;
-        margin-top: 0;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
         display: flex;
         flex-direction: column;
     }

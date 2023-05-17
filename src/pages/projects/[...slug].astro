@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 import { Image } from "@astrojs/image/components";
 import Layout from "@layouts/Layout.astro";
 import IconLink from "@components/IconLink.astro";
-import defaultSrc from "@images/default-project-image.webp";
-import { getGithubOpenGraph } from "@components/projects/ProjectCard.astro";
+import getProjectImageSrc from "@images/utils";
+import { getImage } from "astro/dist/assets/internal";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
     return renameEntries.map((entry) => ({
@@ -14,9 +14,19 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const src = await getProjectImageSrc(
+    entry.data.links?.github ?? "Not Found",
+    entry.data.image?.src
+);
+
+const og = {
+    src,
+    alt: entry.data.name
+};
 ---
 
-<Layout title={entry.data.name}>
+<Layout title={entry.data.name} description={entry.data.summary} keywords={entry.data.tags} og={og}>
     <header>
         <div class="img-container">
             <Image
@@ -27,7 +37,7 @@ const { Content } = await entry.render();
                 width={entry.data.image?.width ?? 474}
                 height={entry.data.image?.height ?? 474}
                 alt={entry.data.name}
-                src={entry.data.image?.src ?? getGithubOpenGraph(entry.data.links.github)}
+                src={src}
             />
         </div>
         <hgroup>

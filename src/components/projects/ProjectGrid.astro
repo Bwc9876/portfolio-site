@@ -29,9 +29,23 @@ if (limitTo) {
 </div>
 
 <style>
+    @media (width >= 769px) {
+        div {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+    @media (425px <= width <= 769px) {
+        div {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media (width <= 425px) {
+        div {
+            grid-template-columns: 1fr;
+        }
+    }
     div {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
         gap: var(--spacing);
     }
 </style>

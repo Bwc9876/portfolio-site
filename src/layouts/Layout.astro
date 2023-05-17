@@ -40,6 +40,7 @@ const canonical = Astro.url.toString();
 <!DOCTYPE html>
 <html data-theme="dark" lang="en">
     <head>
+        <title>{fullTitle}</title>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width" />
@@ -58,7 +59,6 @@ const canonical = Astro.url.toString();
         <meta name="twitter:image" content={og.src} />
         <link rel="canonical" href={canonical} />
         <link rel="icon" href="/favicon.png" />
-        <title>{fullTitle}</title>
     </head>
     <body>
         <nav class="container">
@@ -75,7 +75,7 @@ const canonical = Astro.url.toString();
                         />
                     </a>
                 </li>
-                <li>
+                <li class="brand-name">
                     <b>Bwc9876</b>.dev
                 </li>
                 <li>
@@ -89,7 +89,7 @@ const canonical = Astro.url.toString();
                 <li>
                     <IconLink
                         icon="github"
-                        size={30}
+                        size={25}
                         href="https://github.com/Bwc9876"
                         label="GitHub"
                         placement="bottom"
@@ -98,9 +98,18 @@ const canonical = Astro.url.toString();
                 <li>
                     <IconLink
                         icon="twitter"
-                        size={30}
+                        size={25}
                         href="https://twitter.com/Bwc9876"
                         label="Twitter"
+                        placement="bottom"
+                    />
+                </li>
+                <li>
+                    <IconLink
+                        icon="linkedin"
+                        size={25}
+                        href="https://www.linkedin.com/in/bwc9876"
+                        label="Linkedin"
                         placement="bottom"
                     />
                 </li>
@@ -116,6 +125,19 @@ const canonical = Astro.url.toString();
     :root {
         --spacing: 0.5rem !important;
         --muted-color: hsl(205 10% 65% / 1) !important;
+    }
+
+    @media (width <= 575px) {
+        .brand-name {
+            display: none;
+        }
+    }
+
+    @media (width <= 330px) {
+        nav [astro-icon] {
+            width: 1em;
+            height: 1em;
+        }
     }
 
     .nav-icon {

@@ -13,6 +13,6 @@ export interface Props {
 const { href, label, placement, icon, size } = Astro.props;
 ---
 
-<ExtLink data-tooltip={label} data-placement={placement} href={href}>
+<ExtLink aria-label={label} data-tooltip={label} data-placement={placement} href={href}>
     <Icon width={size} height={size} name={`bi:${icon}`} />
 </ExtLink>

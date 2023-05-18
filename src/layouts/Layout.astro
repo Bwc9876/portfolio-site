@@ -61,7 +61,7 @@ const canonical = Astro.url.toString();
         <link rel="canonical" href={canonical} />
         <link rel="icon" href="/favicon.png" />
     </head>
-    <body>
+    <body id="top">
         <nav class="container">
             <ul>
                 <li>
@@ -99,6 +99,11 @@ const canonical = Astro.url.toString();
         <main class="container">
             <slot />
         </main>
+        <footer class="container">
+            <p><a href="#top">Back To Top</a></p>
+            <p class="copyright">© Ben C 2023</p>
+            <Socials labelPlacement="top" />
+        </footer>
     </body>
 </html>
 
@@ -120,6 +125,33 @@ const canonical = Astro.url.toString();
         .container {
             padding: 0 calc(var(--spacing) * 2) !important;
         }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        margin-top: calc(var(--spacing) * 5) !important;
+    }
+
+    footer p {
+        text-align: center;
+    }
+
+    footer p.copyright {
+        color: var(--muted-color);
+    }
+
+    footer ul {
+        display: flex;
+        gap: calc(var(--spacing) * 3);
+        list-style: none;
+        flex-direction: row;
+    }
+
+    footer ul li {
+        list-style: none;
     }
 
     nav .mobile-socials {

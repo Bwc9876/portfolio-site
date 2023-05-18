@@ -13,7 +13,7 @@ export interface Props {
     overridePack?: string;
 }
 
-const { href, label, placement, icon, size, overridePack } = Astro.props;
+const { href, label, placement, icon, size, overridePack, ...rest } = Astro.props;
 ---
 
 <ExtLink

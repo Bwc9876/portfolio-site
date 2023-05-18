@@ -86,11 +86,11 @@ const canonical = Astro.url.toString();
                     <a href="/projects">Projects</a>
                 </li>
             </ul>
-            <ul aria-hidden class="mobile-socials">
+            <ul aria-hidden="true" class="mobile-socials">
                 <li>
                     <details role="list" dir="rtl">
-                        <summary aria-haspopup="listbox" role="link">Socials</summary>
-                        <Socials role="listbox" labelPlacement="inside" />
+                        <summary tabindex="-1" aria-haspopup="listbox" role="link">Socials</summary>
+                        <Socials makeLinksUnfocusable role="listbox" labelPlacement="inside" />
                     </details>
                 </li>
             </ul>

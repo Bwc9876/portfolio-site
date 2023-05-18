@@ -6,6 +6,7 @@ import "@picocss/pico/css/pico.min.css";
 
 import defaultOg from "@images/default-og.png";
 import Socials from "@components/Socials.astro";
+import { Icon } from "astro-icon";
 
 export interface Props {
     title: string;
@@ -100,7 +101,14 @@ const canonical = Astro.url.toString();
             <slot />
         </main>
         <footer class="container">
-            <p><a href="#top">Back To Top</a></p>
+            <p>
+                <a
+                    aria-label="Back To Top"
+                    data-tooltip="Back To Top"
+                    data-placement="top"
+                    href="#top"><Icon width="1.5rem" height="1.5rem" name="bi:arrow-bar-up" /></a
+                >
+            </p>
             <p class="copyright">© Ben C 2023</p>
             <Socials labelPlacement="top" />
         </footer>

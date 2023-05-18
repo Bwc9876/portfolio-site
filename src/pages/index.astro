@@ -19,7 +19,65 @@ import Layout from "@layouts/Layout.astro";
             desktop apps
         </a>. I enjoy pretty much any aspect of software development.
     </p>
-    <p>On this site you'll find my current and past projects.</p>
+    <p>On this site you'll find info about me and my projects.</p>
+
+    <h2>About Me</h2>
+    <p>
+        I'm an 18 year old developer from Pennsylvania, USA. I first started programming with Unity
+        games but then quickly began doing web development and then exapanded into anything I was
+        interested in. I've been programming for about 6 years now and hope that I can continue to
+        pursue a career in this industry.
+    </p>
+    <p>
+        I then went to trade school for Information Technology programming, and learned a lot about
+        best practices and the software development life cycle. I participated in both SkillsUSA ad
+        TSA as well and got 1st place in states for Video Game Design in TSA, as well as 1st place
+        in Computer Programming at states and 4th at nationals in SkillsUSA.
+    </p>
+    <p>
+        Over the course of time time at trade school I got OSHA, IC3, and Pennsylvania State
+        certified.
+    </p>
+    <p>
+        Also during my time at trade school I join an online community of modders for the game Outer
+        Wilds. This communiy helped me go above and beyond with my development, continually
+        motiviating me to try new things and publish my work.
+    </p>
+    <p>
+        I'll be starting college next year at West Chester University for Computer Science, and hope
+        that I can continue to expand my skillset and improve as a dev.
+    </p>
+    <p>
+        My end goal is to work at a semi-big company and continue to contribute to open source while
+        working.
+    </p>
+
+    <h2>What I Know</h2>
+    <p>
+        I've tried my best to be a well-rounded developer and over the years, here's a list of some
+        of the things I work in:
+    </p>
+    <ul class="know-list">
+        <li>Python</li>
+        <li>C#</li>
+        <li>Unity</li>
+        <li>Django</li>
+        <li>HTML</li>
+        <li>CSS / SASS</li>
+        <li>Rust</li>
+        <li>JavaScript / TypeScript</li>
+        <li>Node</li>
+        <li>GitHub Actions</li>
+        <li>React</li>
+        <li>Astro</li>
+        <li>Tauri</li>
+        <li>WinForms</li>
+        <li>Visual Basic / VBA</li>
+        <li>C++</li>
+        <li>Java</li>
+        <li>ActiveDirectory</li>
+    </ul>
+    <p>Below you can find some of my recent projects where I use these technologies.</p>
 
     <hgroup>
         <h2>Recent Projects</h2>
@@ -37,5 +95,18 @@ import Layout from "@layouts/Layout.astro";
         display: flex;
         justify-content: center;
         width: 100%;
+    }
+
+    .know-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    .know-list li {
+        list-style: none;
+        padding: var(--spacing);
+        border: 2px solid var(--primary);
+        border-radius: 5px;
     }
 </style>

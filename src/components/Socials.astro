@@ -1,0 +1,69 @@
+---
+import IconLink, { LabelPlacement } from "@components/IconLink.astro";
+import type { AriaRole } from "astro-icon/lib/Props";
+
+export interface Props {
+    labelPlacement: LabelPlacement;
+    [rest: string | number | symbol]: unknown;
+}
+
+const { labelPlacement, ...rest } = Astro.props;
+---
+
+<ul {...rest}>
+    <li>
+        <IconLink
+            icon="github"
+            size={25}
+            href="https://github.com/Bwc9876"
+            label="GitHub"
+            placement={labelPlacement}
+        />
+    </li>
+    <li>
+        <IconLink
+            icon="twitter"
+            size={25}
+            href="https://twitter.com/Bwc9876"
+            label="Twitter"
+            placement={labelPlacement}
+        />
+    </li>
+    <li>
+        <IconLink
+            icon="instagram"
+            size={25}
+            href="https://www.instagram.com/bwc6789/"
+            label="Instagram"
+            placement={labelPlacement}
+        />
+    </li>
+    <li>
+        <IconLink
+            icon="linkedin"
+            size={25}
+            href="https://www.linkedin.com/in/bwc9876"
+            label="LinkedIn"
+            placement={labelPlacement}
+        />
+    </li>
+    <li>
+        <IconLink
+            icon="paypal"
+            size={25}
+            href="https://paypal.me/bwc9876"
+            label="Paypal"
+            placement={labelPlacement}
+        />
+    </li>
+    <li>
+        <IconLink
+            icon="patreon"
+            overridePack="mdi"
+            size={25}
+            href="https://patreon.com/Bwc9876"
+            label="Patreon"
+            placement={labelPlacement}
+        />
+    </li>
+</ul>

@@ -2,17 +2,26 @@
 import { Icon } from "astro-icon";
 import ExtLink from "./ExtLink.astro";
 
+export type LabelPlacement = "top" | "left" | "right" | "bottom" | "inside";
+
 export interface Props {
     href: string;
     icon: string;
     size: number;
     label: string;
-    placement: "top" | "left" | "right" | "bottom";
+    placement: LabelPlacement;
+    overridePack?: string;
 }
 
-const { href, label, placement, icon, size } = Astro.props;
+const { href, label, placement, icon, size, overridePack } = Astro.props;
 ---
 
-<ExtLink aria-label={label} data-tooltip={label} data-placement={placement} href={href}>
-    <Icon width={size} height={size} name={`bi:${icon}`} />
+<ExtLink
+    aria-label={label}
+    data-tooltip={placement !== "inside" ? label : null}
+    data-placement={placement !== "inside" ? placement : null}
+    href={href}
+>
+    <Icon width={size} height={size} name={`${overridePack ?? "bi"}:${icon}`} />
+    {placement === "inside" && label}
 </ExtLink>

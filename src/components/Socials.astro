@@ -1,75 +1,45 @@
 ---
 import IconLink, { LabelPlacement } from "@components/IconLink.astro";
 
+type SocialData = Array<{
+    name: string;
+    icon: string;
+    link: string;
+    overridePack?: string;
+}>;
+
 export interface Props {
     labelPlacement: LabelPlacement;
     makeLinksUnfocusable?: boolean;
     [rest: string | number | symbol]: unknown;
 }
 
+const socialData: SocialData = [
+    { name: "GitHub", icon: "github", link: "https://github.com/Bwc9876" },
+    { name: "Twitter", icon: "twitter", link: "https://twitter.com/Bwc9876" },
+    { name: "Instagram", icon: "instagram", link: "https://www.instagram.com/bwc6789/" },
+    { name: "LinkedIn", icon: "linkedin", link: "https://www.linkedin.com/in/bwc9876" },
+    { name: "PayPal", icon: "paypal", link: "https://paypal.me/bwc9876" },
+    { name: "Patreon", icon: "patreon", overridePack: "mdi", link: "https://patreon.com/Bwc9876" }
+];
+
 const { labelPlacement, makeLinksUnfocusable, ...rest } = Astro.props;
 ---
 
 <ul {...rest}>
-    <li>
-        <IconLink
-            icon="github"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://github.com/Bwc9876"
-            label="GitHub"
-            placement={labelPlacement}
-        />
-    </li>
-    <li>
-        <IconLink
-            icon="twitter"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://twitter.com/Bwc9876"
-            label="Twitter"
-            placement={labelPlacement}
-        />
-    </li>
-    <li>
-        <IconLink
-            icon="instagram"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://www.instagram.com/bwc6789/"
-            label="Instagram"
-            placement={labelPlacement}
-        />
-    </li>
-    <li>
-        <IconLink
-            icon="linkedin"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://www.linkedin.com/in/bwc9876"
-            label="LinkedIn"
-            placement={labelPlacement}
-        />
-    </li>
-    <li>
-        <IconLink
-            icon="paypal"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://paypal.me/bwc9876"
-            label="PayPal"
-            placement={labelPlacement}
-        />
-    </li>
-    <li>
-        <IconLink
-            icon="patreon"
-            overridePack="mdi"
-            size={25}
-            tabindex={makeLinksUnfocusable ? "-1" : undefined}
-            href="https://patreon.com/Bwc9876"
-            label="Patreon"
-            placement={labelPlacement}
-        />
-    </li>
+    {
+        socialData.map((s) => (
+            <li>
+                <IconLink
+                    icon={s.icon}
+                    overridePack={s.overridePack}
+                    size={25}
+                    tabindex={makeLinksUnfocusable ? "-1" : undefined}
+                    href={s.link}
+                    label={s.name}
+                    placement={labelPlacement}
+                />
+            </li>
+        ))
+    }
 </ul>

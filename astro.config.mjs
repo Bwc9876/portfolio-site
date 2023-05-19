@@ -6,6 +6,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
     site: "https://bwc9876.dev",
+    compressHTML: true,
     integrations: [
         mdx(),
         image({

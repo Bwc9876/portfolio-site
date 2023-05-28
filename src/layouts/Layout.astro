@@ -9,6 +9,7 @@ import { Icon } from "astro-icon";
 
 export interface Props {
     title: string;
+    appendTitle?: boolean;
     description?: string;
     keywords?: string[];
     og?: {
@@ -17,7 +18,7 @@ export interface Props {
     };
 }
 
-const { title, description: oldDescription, keywords, og: oldOg } = Astro.props;
+const { title, appendTitle, description: oldDescription, keywords, og: oldOg } = Astro.props;
 
 const og = oldOg ?? { src: defaultOg.src, alt: "Ben C's Avatar" };
 
@@ -34,7 +35,7 @@ const ogImg = await getImage({
 og.src = `${Astro.url.origin}${ogImg.src}`;
 
 const description = oldDescription ?? "Ben C's software development portfolio";
-const fullTitle = `${title} | Ben C`;
+const fullTitle = appendTitle ?? true ? `${title} | Ben C` : title;
 const canonical = Astro.url.toString();
 ---
 

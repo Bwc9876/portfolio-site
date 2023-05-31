@@ -19,7 +19,16 @@ const projectsCollection = defineCollection({
         links: z
             .object({
                 github: z.string().optional(),
-                other: z.record(z.string()).optional()
+                other: z
+                    .array(
+                        z.object({
+                            label: z.string(),
+                            url: z.string(),
+                            icon: z.string().default("link-45deg"),
+                            iconPackOverride: z.string().optional()
+                        })
+                    )
+                    .optional()
             })
             .optional()
     })

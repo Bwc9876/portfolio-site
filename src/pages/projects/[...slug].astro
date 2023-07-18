@@ -4,6 +4,7 @@ import { Image } from "@astrojs/image/components";
 import Layout from "@layouts/Layout.astro";
 import IconLink from "@components/IconLink.astro";
 import getProjectImageSrc from "@images/utils";
+import { Icon } from "astro-icon";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
     return renameEntries.map((entry) => ({
@@ -19,6 +20,10 @@ const src = await getProjectImageSrc(
     entry.data.image?.src
 );
 
+const firstOtherLink = entry.data.links?.other?.[0];
+
+const restOther = entry.data.links?.other?.slice(1);
+
 const og = {
     src,
     alt: entry.data.name
@@ -26,7 +31,62 @@ const og = {
 ---
 
 <Layout title={entry.data.name} description={entry.data.summary} keywords={entry.data.tags} og={og}>
-    <header>
+    <div class="hero">
+        <div class="txt">
+            <hgroup>
+                <h1 class="gradient-text">{entry.data.name}</h1>
+                <h2>
+                    {entry.data.timespan.from}{
+                        entry.data.timespan.to && <> - {entry.data.timespan.to}</>
+                    } •
+                    {entry.data.tags.join(" • ")}
+                </h2>
+            </hgroup>
+            <p>{entry.data.summary}</p>
+            <div class="ctas">
+                {
+                    entry.data.links?.github && (
+                        <span>
+                            <a href={`https://github.com/${entry.data.links.github}`} role="button">
+                                <Icon name="bi:github" size={25} /> View On GitHub
+                            </a>
+                        </span>
+                    )
+                }
+                {
+                    firstOtherLink && (
+                        <span>
+                            <a href={firstOtherLink.url} role="button" class="secondary">
+                                <Icon
+                                    name={`${firstOtherLink.iconPackOverride ?? "bi"}:${
+                                        firstOtherLink.icon
+                                    }`}
+                                    size={25}
+                                />
+                                {firstOtherLink.label}
+                            </a>
+                        </span>
+                    )
+                }
+            </div>
+            <div class="links">
+                {
+                    restOther &&
+                        restOther.map((l) => (
+                            <span>
+                                <IconLink
+                                    icon={l.icon}
+                                    overridePack={l.iconPackOverride}
+                                    size={25}
+                                    href={l.url}
+                                    placement="bottom"
+                                    label={l.label}
+                                />
+                            </span>
+                        ))
+                }
+            </div>
+        </div>
         <div class="img-container">
             <Image
                 fit="inside"
@@ -39,77 +99,47 @@ const og = {
                 src={src}
             />
         </div>
-        <hgroup>
-            <h1>{entry.data.name}</h1>
-            <h2>
-                {entry.data.timespan.from}{
-                    entry.data.timespan.to && <> - {entry.data.timespan.to}</>
-                } •
-                {entry.data.tags.join(" • ")}
-            </h2>
-        </hgroup>
-        <div class="links">
-            {
-                entry.data.links?.github && (
-                    <span>
-                        <IconLink
-                            icon="github"
-                            size={25}
-                            label="GitHub"
-                            placement="bottom"
-                            href={`https://github.com/${entry.data.links.github}`}
-                        />
-                    </span>
-                )
-            }
-            {
-                entry.data.links?.other &&
-                    entry.data.links.other.map((l) => (
-                        <span>
-                            <IconLink
-                                icon={l.icon}
-                                overridePack={l.iconPackOverride}
-                                size={25}
-                                href={l.url}
-                                placement="bottom"
-                                label={l.label}
-                            />
-                        </span>
-                    ))
-            }
-        </div>
-    </header>
+    </div>
     <Content />
 </Layout>
 
 <style>
-    header > hgroup {
-        margin-bottom: var(--spacing);
-    }
-
-    header > div.img-container {
-        width: 100%;
+    .hero {
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        gap: calc(var(--spacing) * 5);
+        justify-content: space-between;
+        align-items: center;
+        margin: calc(var(--spacing) * 10) 0;
     }
 
-    header {
-        background-color: var(--card-sectionning-background-color);
-        padding: var(--spacing);
-        border-radius: 5px;
-        margin-bottom: calc(var(--spacing) * 5) !important;
-        text-align: center;
+    .hero .txt {
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    .hero .ctas {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    .hero .ctas a[role="button"] {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing);
+    }
+
+    .hero .img-container {
+        flex-grow: 1;
+        width: 100%;
     }
 
     .links {
         display: flex;
-        align-content: center;
-        justify-content: center;
-        gap: var(--spacing);
-    }
-
-    .links > span {
-        display: flex;
-        align-items: center;
+        gap: calc(var(--spacing) * 2);
     }
 </style>

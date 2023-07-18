@@ -1,57 +1,41 @@
 ---
 import ProjectGrid from "@components/projects/ProjectGrid.astro";
 import Layout from "@layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
 ---
 
 <Layout title="Ben C's Portfolio" appendTitle={false}>
-    <h1>Ben C's Portfolio</h1>
-    <p>
-        Hi there! I'm Ben C, a prospective college student looking to enter the world of software
-        development, specifically full-stack web development.
-    </p>
-    <p>
-        I'm currently set to start my college career in Computer Science at West Chester University
-        in August.
-    </p>
-    <p>
-        I like to try a lot of things, from <a href="/projects/ow-new-horizons"> modding games</a>
-        to building
-        <a href="/projects/menagerie">websites</a> and
-        <a href="/projects/ow-mod-man">desktop apps</a>. I enjoy pretty much any aspect of software
-        development.
-    </p>
-    <p>On this site you'll find info about me and my projects.</p>
-
-    <h2>About Me</h2>
-    <p>
-        I'm an 18-year-old developer from Pennsylvania, USA. I first started programming with Unity
-        games but then quickly began doing web development and then expanded into anything I was
-        interested in. I've been programming for about six years now and hope that I can continue to
-        pursue a career in this industry.
-    </p>
-    <p>
-        I then went to trade school for Information Technology Programming and learned a lot about
-        best practices and the software development life cycle. I participated in both SkillsUSA ad
-        TSA as well and was awarded 1st place in states for Video Game Design in TSA, as well as 1st
-        place in Computer Programming at states and 4th at nationals in SkillsUSA.
-    </p>
-    <p>
-        Throughout my time at trade school, I received my OSHA, IC3, and Pennsylvania State Skills
-        (Information Technology Programming) certifications.
-    </p>
-    <p>
-        Also during my time at trade school, I joined an online community of modders for the game
-        Outer Wilds. This community helped me go above and beyond with my development, continually
-        motivating me to try new things and publish my work.
-    </p>
-    <p>
-        I'll be starting college in August at West Chester University for Computer Science, and hope
-        that I can continue to expand my skill set and improve as a dev.
-    </p>
-    <p>
-        My end goal is to work at a semi-big company and continue to contribute to open source while
-        working.
-    </p>
+    <div class="hero">
+        <div>
+            <h1>Ben C's <span class="gradient-text">Portfolio</span></h1>
+            <p>
+                Hi there! I'm Ben C, a prospective college student looking to enter the world of
+                software development, specifically full-stack web development.
+            </p>
+            <p>
+                I like to try a lot of things, from <a href="/projects/ow-new-horizons">
+                    modding games</a
+                >
+                to building
+                <a href="/projects/menagerie">websites</a> and
+                <a href="/projects/ow-mod-man">desktop apps</a>.<br /> I enjoy pretty much any aspect
+                of software development.
+            </p>
+            <div class="ctas">
+                <a href="/projects" role="button">View My Projects</a>
+                <a href="#about-me" role="button" class="secondary">About Me</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <Image
+                width={150}
+                height={150}
+                format="webp"
+                alt="Ben C's Avatar"
+                src="https://avatars.githubusercontent.com/u/25644444?v=4"
+            />
+        </div>
+    </div>
 
     <h2>What I Know</h2>
     <p>
@@ -82,7 +66,34 @@ import Layout from "@layouts/Layout.astro";
         <li>Bash / Zsh / Nushell</li>
         <li>Linux</li>
     </ul>
-    <p>Below you can find some of my recent projects where I use these technologies.</p>
+
+    <h2 id="about-me">About Me</h2>
+    <div class="about-section">
+        <p>
+            I'm an 18-year-old developer from Pennsylvania, USA. I first started programming with
+            Unity games but then quickly began doing web development and then expanded into anything
+            I was interested in. I've been programming for about six years now and hope that I can
+            continue to pursue a career in this industry.
+        </p>
+        <p>
+            After programming on my own for about 3 years, I went to trade school for Information
+            Technology Programming and learned about best practices and the software development
+            life cycle. I participated in both SkillsUSA and TSA and was awarded 1st place in states
+            for Video Game Design in TSA, as well as 1st place in Computer Programming at states and
+            4th at nationals in SkillsUSA. Throughout my time at trade school, I received my OSHA,
+            IC3, and Pennsylvania State Skills (Information Technology Programming) certifications.
+        </p>
+        <p>
+            Also during my time at trade school, I joined an online community of modders for the
+            game Outer Wilds. This community helped me go above and beyond with my development,
+            continually motivating me to try new things and publish my work.
+        </p>
+        <p>I'll be starting college in August, and majoring in Computer Science.</p>
+        <p>
+            My end goal is to work at a semi-big company and continue to contribute to open source
+            while working.
+        </p>
+    </div>
 
     <hgroup>
         <h2>Recent Projects</h2>
@@ -95,6 +106,31 @@ import Layout from "@layouts/Layout.astro";
 </Layout>
 
 <style>
+    .hero {
+        display: flex;
+        flex-direction: row;
+        gap: calc(var(--spacing) * 5);
+        justify-content: space-between;
+        align-items: center;
+        margin: calc(var(--spacing) * 10) 0;
+        height: 50vh;
+    }
+
+    .hero .ctas {
+        display: flex;
+        gap: var(--spacing);
+    }
+
+    .hero-image {
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-image img {
+        width: 350px;
+        clip-path: circle();
+    }
+
     .view-more {
         margin-top: calc(var(--spacing) * 3);
         display: flex;
@@ -111,7 +147,8 @@ import Layout from "@layouts/Layout.astro";
     .know-list li {
         list-style: none;
         padding: var(--spacing);
-        border: 0.01rem solid var(--primary);
+        border: 0.1rem solid var(--accent);
+        background-color: var(--secondary);
         border-radius: 50px;
     }
 </style>

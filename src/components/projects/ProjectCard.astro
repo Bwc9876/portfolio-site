@@ -15,9 +15,10 @@ const src = await getProjectImageSrc(
 );
 ---
 
-<article>
-    <header>
-        <a href={`/projects/${project.slug}/`}>
+<a href={`/projects/${project.slug}/`}>
+    <div class="card">
+        <div class="header">
+            <strong class="project-name">{project.data.name}</strong>
             <div>
                 <Image
                     width={500}
@@ -28,44 +29,69 @@ const src = await getProjectImageSrc(
                     alt={project.data.name}
                 />
             </div>
-            <strong class="project-name">{project.data.name}</strong>
-        </a>
-    </header>
-    <span>{project.data.summary}</span>
-    <footer>
-        <small>{project.data.tags.join(" • ")}</small>
-    </footer>
-</article>
+        </div>
+        <span>{project.data.summary}</span>
+        <div class="footer">
+            <small>{project.data.tags.join(" • ")}</small>
+        </div>
+    </div>
+</a>
 
 <style>
-    article {
-        margin-bottom: 0 !important;
-        margin-top: 0 !important;
-        display: flex;
-        flex-direction: column;
+    :not(.project-name) {
+        text-decoration: none !important;
     }
 
-    article:hover {
+    div.card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: var(--secondary);
+        padding: calc(var(--spacing) * 2);
+        gap: calc(var(--spacing) * 3);
+        border-radius: 5px;
+    }
+
+    a {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    a:hover {
         transform: translateY(calc(var(--spacing) * -0.5));
         transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
     }
 
-    article:hover img {
+    a:hover img {
         transform: scale(1.06);
     }
 
-    header > a > div {
-        overflow: hidden;
-        width: 100%;
-        margin-bottom: var(--spacing);
+    div.header {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 2);
     }
 
-    header > a > strong {
+    div.header > div {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    div.header > strong {
         font-size: larger;
+    }
+
+    div.footer {
+        text-align: center;
     }
 
     span {
         flex-grow: 1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     img {

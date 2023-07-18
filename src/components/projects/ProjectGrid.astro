@@ -9,13 +9,7 @@ export interface Props {
 const projectEntries = await getCollection("projects");
 let entries = projectEntries.sort((a, b) => {
     const [yearA, yearB] = [a.data.timespan.from, b.data.timespan.from];
-    if (yearA === yearB) {
-        return 0;
-    } else if (yearA > yearB) {
-        return -1;
-    } else {
-        return 1;
-    }
+    return yearB - yearA;
 });
 
 const { limitTo } = Astro.props;
@@ -46,6 +40,6 @@ if (limitTo) {
     }
     div {
         display: grid;
-        gap: var(--spacing);
+        gap: calc(var(--spacing) * 2);
     }
 </style>

@@ -78,7 +78,9 @@ const canonical = Astro.url.toString();
                     </a>
                 </li>
                 <li class="brand-name">
-                    <b>Bwc9876</b>.dev
+                    <a href="/">
+                        <b class="gradient-text">Bwc9876</b>.dev
+                    </a>
                 </li>
                 <li class="home-link">
                     <a href="/">Home</a>
@@ -117,25 +119,57 @@ const canonical = Astro.url.toString();
 
 <style is:global>
     :root {
+        --text: #daf1ef;
+        --background: #080609;
+        --primary: #53d164 !important;
+        --secondary: #012d1e !important;
+        --accent: #0ee19b;
         --spacing: 0.5rem !important;
-        --primary: #32c432 !important;
-        --primary-hover: hsl(120 80% 50% / 1) !important;
-        --primary-focus: hsl(120deg 85% 41% / 25%) !important;
+        --primary-hover: hsl(128, 58%, 45%) !important;
+        --primary-focus: hsl(128, 58%, 70%) !important;
+        --secondary-hover: hsl(160, 96%, 10%) !important;
+        --secondary-focus: hsl(160, 96%, 30%) !important;
         --tooltip-color: var(--muted-color) !important;
-        --tooltip-background-color: hsl(120 31% 2% / 1) !important;
-        --background-color: #101e10 !important;
-        --card-background-color: hsl(120 31% 11% / 1) !important;
-        --card-sectionning-background-color: hsl(120 29% 13% / 1) !important;
-        --dropdown-background-color: hsl(120, 30%, 15%) !important;
-        --dropdown-border-color: hsl(120, 27%, 19%) !important;
-        --color: hsl(120, 16%, 77%) !important;
-        --h1-color: hsl(120, 20%, 94%) !important;
-        --h2-color: hsl(125, 20%, 90%) !important;
-        --h3-color: hsl(120, 18%, 86%) !important;
-        --h4-color: hsl(121, 17%, 82%) !important;
-        --h5-color: hsl(120, 16%, 77%) !important;
-        --h6-color: hsl(121, 15%, 73%) !important;
-        --muted-color: hsl(120 10% 65% / 1) !important;
+        --tooltip-background-color: var(--secondary) !important;
+        --background-color: var(--background) !important;
+        --card-background-color: var(--secondary) !important;
+        --card-sectionning-background-color: var(--secondary) !important;
+        --dropdown-background-color: var(--secondary) !important;
+        --dropdown-hover-background-color: var(--secondary-hover) !important;
+        --dropdown-border-color: var(--secondary) !important;
+        --color: var(--text) !important;
+        --h1-color: var(--primary) !important;
+        --h2-color: var(--text) !important;
+        --h3-color: var(--text) !important;
+        --h4-color: var(--text) !important;
+        --h5-color: var(--text) !important;
+        --h6-color: var(--text) !important;
+        --muted-color: var(--text) !important;
+    }
+
+    a:not([role="button"]):focus,
+    summary:focus {
+        background-color: initial;
+        border: 2px solid var(--accent);
+        border-radius: 5px;
+    }
+
+    .gradient-text {
+        background: linear-gradient(120deg, var(--primary), var(--accent) 70%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    a[role="button"]:not(.secondary) {
+        color: black !important;
+    }
+
+    a:not([role="button"]) {
+        color: var(--accent);
+    }
+
+    a:not([role="button"]):hover {
+        color: hsl(160, 88%, 35%);
     }
 
     body {
@@ -150,6 +184,10 @@ const canonical = Astro.url.toString();
 
     .home-link {
         padding-left: calc(var(--spacing) * 2);
+    }
+
+    .brand-name {
+        color: var(--accent);
     }
 
     @media (width <= 575px) {
@@ -191,6 +229,12 @@ const canonical = Astro.url.toString();
 
     nav .mobile-socials {
         display: none;
+    }
+
+    nav summary {
+        color: var(--accent) !important;
+        display: flex;
+        align-items: center;
     }
 
     nav details a {

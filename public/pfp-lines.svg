@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg stroke="#000" class="pfp-lines" version="1.1" viewBox="0 0 48 48"
+    xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width=".64515">
+        <rect x="23.946" y=".32257" width=".10717" height="6.5158" />
+        <rect x="23.946" y="41.162" width=".10717" height="6.5158" />
+        <rect transform="rotate(-90)" x="-24.054" y="41.162" width=".10717" height="6.5158" />
+        <rect transform="rotate(-90)" x="-24.054" y=".32257" width=".10717" height="6.5158" />
+        <g transform="rotate(-45,24,24)">
+            <rect x="23.946" y=".32257" width=".10717" height="6.5158" />
+            <rect x="23.946" y="41.162" width=".10717" height="6.5158" />
+            <rect transform="rotate(-90)" x="-24.054" y="41.162" width=".10717" height="6.5158" />
+            <rect transform="rotate(-90)" x="-24.054" y=".32257" width=".10717" height="6.5158" />
+        </g>
+    </g>
+</svg>

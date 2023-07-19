@@ -164,6 +164,8 @@ import { Image } from "@astrojs/image/components";
         animation: pop var(--anim-props);
         content: "";
         mask: url("/pfp-lines.svg") no-repeat 50% 50%;
+        -webkit-mask: url("/pfp-lines.svg") no-repeat 50% 50%;
+        -webkit-mask-size: cover;
         mask-size: cover;
         display: inline-block;
         position: absolute;

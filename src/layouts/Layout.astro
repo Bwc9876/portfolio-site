@@ -184,6 +184,7 @@ const canonical = Astro.url.toString();
 
     .home-link {
         padding-left: calc(var(--spacing) * 2);
+        display: none;
     }
 
     .brand-name {
@@ -193,6 +194,10 @@ const canonical = Astro.url.toString();
     @media (width <= 575px) {
         .brand-name {
             display: none;
+        }
+
+        .home-link {
+            display: initial;
         }
 
         .container {

@@ -113,17 +113,23 @@ import { Image } from "@astrojs/image/components";
         justify-content: space-between;
         align-items: center;
         margin: calc(var(--spacing) * 10) 0;
-        height: 50vh;
     }
 
     .hero .ctas {
         display: flex;
+        flex-wrap: wrap;
         gap: var(--spacing);
     }
 
     .hero-image {
         display: flex;
         align-items: center;
+    }
+
+    @media (width <= 575px) {
+        .hero-image {
+            display: none;
+        }
     }
 
     .hero-image img {

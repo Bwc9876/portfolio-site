@@ -113,6 +113,12 @@ const og = {
         margin: calc(var(--spacing) * 10) 0;
     }
 
+    @media (width <= 575px) {
+        .hero {
+            flex-direction: column-reverse;
+        }
+    }
+
     .hero .txt {
         width: 100%;
         flex-grow: 1;

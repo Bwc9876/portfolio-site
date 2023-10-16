@@ -1,9 +1,8 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
-import { Image } from "@astrojs/image/components";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import IconLink from "@components/IconLink.astro";
-import getProjectImageSrc from "@images/utils";
 import { Icon } from "astro-icon";
 export async function getStaticPaths() {
     const renameEntries = await getCollection("projects");
@@ -15,17 +14,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props as { entry: CollectionEntry<"projects"> };
 const { Content } = await entry.render();
 
-const src = await getProjectImageSrc(
-    entry.data.links?.github ?? "Not Found",
-    entry.data.image?.src
-);
-
 const firstOtherLink = entry.data.links?.other?.[0];
 
 const restOther = entry.data.links?.other?.slice(1);
 
 const og = {
-    src,
+    src: entry.data.image,
     alt: entry.data.name
 };
 ---
@@ -89,14 +83,11 @@ const og = {
         </div>
         <div class="img-container">
             <Image
-                fit="inside"
-                position="center"
                 format="webp"
-                background="#18232C"
-                width={entry.data.image?.width ?? 474}
-                height={entry.data.image?.height ?? 474}
+                width={474}
+                height={474}
                 alt={entry.data.name}
-                src={src}
+                src={entry.data.image}
             />
         </div>
     </div>

@@ -1,6 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
-import getProjectImageSrc from "@images/utils";
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
@@ -8,11 +7,6 @@ export interface Props {
 }
 
 const { project } = Astro.props;
-
-const src = await getProjectImageSrc(
-    project.data.links?.github ?? "Not Found",
-    project.data.image?.src
-);
 ---
 
 <a href={`/projects/${project.slug}/`}>
@@ -23,9 +17,8 @@ const src = await getProjectImageSrc(
                 <Image
                     width={500}
                     height={500}
-                    position="center"
                     format="webp"
-                    src={src}
+                    src={project.data.image}
                     alt={project.data.name}
                 />
             </div>

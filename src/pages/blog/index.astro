@@ -1,0 +1,35 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const blogEntries = await getCollection("posts");
+---
+
+<Layout title="The Cowsay - Ben C's Blog">
+    <h1>The Cowsay - Ben C's Blog</h1>
+    <p>Here you'll find my blog posts, most recent first</p>
+    {
+        blogEntries.map((p, i) => (
+            <>
+                {i === 0 && <hr />}
+                <hgroup>
+                    <h2>
+                        <a href={`/blog/posts/${p.slug}`}>{p.data.title}</a>
+                    </h2>
+                    <h3>
+                        {p.data.date.toLocaleDateString("en-us", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric"
+                        })}
+                    </h3>
+                </hgroup>
+                <p>
+                    {p.data.summary}&nbsp;&nbsp;<a href={`/blog/posts/${p.slug}`}>Read More</a>
+                </p>
+                <hr />
+            </>
+        ))
+    }
+</Layout>

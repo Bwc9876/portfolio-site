@@ -1,0 +1,31 @@
+---
+import * as cowsay from "cowsay";
+
+type Props = {
+    color?: "warn" | "info";
+} & cowsay.IOptions;
+
+const { color, ...cowOptions } = Astro.props;
+
+const cowText = cowsay.say(cowOptions);
+---
+
+<pre class={color}>
+{cowText}
+</pre>
+
+<style>
+    pre {
+        padding: 1rem;
+    }
+
+    pre.warn {
+        color: yellow;
+        background-color: rgb(25, 25, 0);
+    }
+
+    pre.info {
+        color: cyan;
+        background-color: rgb(0, 25, 25);
+    }
+</style>

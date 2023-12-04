@@ -12,17 +12,17 @@
         "format": "prettier --write . --plugin-search-dir=."
     },
     "dependencies": {
-        "@astrojs/mdx": "^1.1.2",
-        "@astrojs/sitemap": "^3.0.1",
+        "@astrojs/mdx": "^1.1.5",
+        "@astrojs/sitemap": "^3.0.3",
         "@picocss/pico": "^1.5.10",
-        "astro": "^3.3.0",
+        "astro": "^3.6.4",
         "astro-icon": "^0.8.1",
         "cowsay": "^1.5.0",
-        "sharp": "^0.32.6"
+        "sharp": "^0.33.0"
     },
     "devDependencies": {
-        "prettier": "^3.0.3",
-        "prettier-plugin-astro": "^0.12.0",
+        "prettier": "^3.1.0",
+        "prettier-plugin-astro": "^0.12.2",
         "slugify": "^1.6.6"
     }
 }

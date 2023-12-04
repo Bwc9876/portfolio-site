@@ -6,6 +6,7 @@ import defaultOg from "@images/default-og.png";
 import Socials from "@components/Socials.astro";
 import { Icon } from "astro-icon";
 import type { ImageMetadata } from "astro";
+import { ViewTransitions } from "astro:transitions";
 
 export interface Props {
     title: string;
@@ -59,6 +60,7 @@ const canonical = Astro.url.toString();
         <meta name="twitter:image" content={og.src} />
         <link rel="canonical" href={canonical} />
         <link rel="icon" href="/favicon.png" />
+        <ViewTransitions />
     </head>
     <body id="top">
         <nav class="container">
@@ -100,10 +102,10 @@ const canonical = Astro.url.toString();
             </ul>
             <Socials class="normal-socials" labelPlacement="bottom" />
         </nav>
-        <main class="container">
+        <main transition:name="main" transition:animate="slide" class="container">
             <slot />
         </main>
-        <footer class="container">
+        <footer transition:name="footer" transition:animate="slide" class="container" class="container">
             <p>
                 <a
                     aria-label="Back To Top"

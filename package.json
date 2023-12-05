@@ -12,10 +12,10 @@
         "format": "prettier --write . --plugin-search-dir=."
     },
     "dependencies": {
-        "@astrojs/mdx": "^1.1.5",
+        "@astrojs/mdx": "^2.0.0",
         "@astrojs/sitemap": "^3.0.3",
         "@picocss/pico": "^1.5.10",
-        "astro": "^3.6.4",
+        "astro": "^4.0.1",
         "astro-icon": "^0.8.1",
         "cowsay": "^1.5.0",
         "sharp": "^0.33.0"

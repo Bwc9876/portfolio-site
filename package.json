@@ -12,16 +12,16 @@
         "format": "prettier --write ."
     },
     "dependencies": {
-        "@astrojs/mdx": "^2.0.0",
+        "@astrojs/mdx": "^2.0.2",
         "@astrojs/sitemap": "^3.0.3",
         "@picocss/pico": "^1.5.10",
-        "astro": "^4.0.1",
-        "astro-icon": "^0.8.1",
+        "astro": "^4.0.7",
+        "astro-icon": "^0.8.2",
         "cowsay": "^1.5.0",
-        "sharp": "^0.33.0"
+        "sharp": "^0.33.1"
     },
     "devDependencies": {
-        "prettier": "^3.1.0",
+        "prettier": "^3.1.1",
         "prettier-plugin-astro": "^0.12.2",
         "slugify": "^1.6.6"
     }

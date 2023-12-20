@@ -17,7 +17,7 @@ const blogEntries = await getCollection("posts");
                         <a href={`/blog/posts/${p.slug}`}>{p.data.title}</a>
                     </h2>
                     <h3>
-                        {p.data.date.toLocaleDateString("en-us", {
+                        {p.data.date.toDateString("en-us", {
                             weekday: "long",
                             year: "numeric",
                             month: "short",

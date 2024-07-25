@@ -60,6 +60,7 @@ const canonical = Astro.url.toString();
         <meta name="twitter:image" content={og.src} />
         <link rel="canonical" href={canonical} />
         <link rel="icon" href="/favicon.png" />
+        <link rel="alternate" type="application/rss+xml" title="Ben C's Blog" href={new URL("feed.xml", Astro.site)}/>
         <ViewTransitions />
     </head>
     <body id="top">

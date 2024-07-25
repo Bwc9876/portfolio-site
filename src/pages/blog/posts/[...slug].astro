@@ -45,6 +45,10 @@ const { Content, headings } = await entry.render();
         gap: 1rem;
     }
 
+    div.wrapper > * {
+        min-width: 0;
+    }
+
     @media (min-width: 1200px) {
         div.wrapper {
             flex-direction: row;
@@ -71,5 +75,10 @@ const { Content, headings } = await entry.render();
     img {
         border: solid 1px var(--text) !important;
         border-radius: 5px;
+    }
+
+    pre {
+        overflow-x: auto;
+        width: 100%;
     }
 </style>

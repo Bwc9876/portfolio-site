@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-const blogEntries = (await getCollection("posts"));
+const blogEntries = await getCollection("posts");
 
 blogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---

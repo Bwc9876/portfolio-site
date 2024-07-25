@@ -22,7 +22,7 @@ import { Image } from "astro:assets";
                 aspect of software development.
             </p>
             <div class="ctas">
-                <a href="/projects" role="button">View My Projects</a>
+                <a href="/projects" role="button" class="primary">View My Projects</a>
                 <a href="#about-me" role="button" class="secondary">About Me</a>
             </div>
         </div>
@@ -61,10 +61,8 @@ import { Image } from "astro:assets";
         <li>C++</li>
         <li>Java</li>
         <li>ActiveDirectory / LDAP</li>
-        <li>Git</li>
         <li>Powershell</li>
         <li>Bash / Zsh / Nushell</li>
-        <li>Linux</li>
     </ul>
 
     <h2 id="about-me">About Me</h2>
@@ -108,7 +106,7 @@ import { Image } from "astro:assets";
     .hero {
         display: flex;
         flex-direction: row;
-        gap: calc(var(--spacing) * 5);
+        gap: calc(var(--spacing) * 10);
         justify-content: space-between;
         align-items: center;
         margin: calc(var(--spacing) * 10) 0;

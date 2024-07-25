@@ -1,5 +1,5 @@
 ---
-import IconLink, { LabelPlacement } from "@components/IconLink.astro";
+import IconLink, { type LabelPlacement } from "@components/IconLink.astro";
 
 type SocialData = Array<{
     name: string;
@@ -16,11 +16,9 @@ export interface Props {
 
 const socialData: SocialData = [
     { name: "GitHub", icon: "github", link: "https://github.com/Bwc9876" },
-    { name: "Twitter", icon: "twitter", link: "https://twitter.com/Bwc9876" },
-    { name: "Instagram", icon: "instagram", link: "https://www.instagram.com/bwc6789/" },
+    { name: "X", icon: "twitter-x", link: "https://x.com/Bwc9876" },
     { name: "LinkedIn", icon: "linkedin", link: "https://www.linkedin.com/in/bwc9876" },
     { name: "PayPal", icon: "paypal", link: "https://paypal.me/bwc9876" },
-    { name: "Patreon", icon: "patreon", overridePack: "mdi", link: "https://patreon.com/Bwc9876" }
 ];
 
 const { labelPlacement, makeLinksUnfocusable, ...rest } = Astro.props;
@@ -43,3 +41,9 @@ const { labelPlacement, makeLinksUnfocusable, ...rest } = Astro.props;
         ))
     }
 </ul>
+
+<style>
+    ul {
+        padding-left: 0 !important;
+    }
+</style>

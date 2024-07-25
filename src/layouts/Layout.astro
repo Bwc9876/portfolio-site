@@ -4,7 +4,7 @@ import "@picocss/pico/css/pico.min.css";
 
 import defaultOg from "@images/default-og.png";
 import Socials from "@components/Socials.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import type { ImageMetadata } from "astro";
 import { ViewTransitions } from "astro:transitions";
 
@@ -111,7 +111,7 @@ const canonical = Astro.url.toString();
                     aria-label="Back To Top"
                     data-tooltip="Back To Top"
                     data-placement="top"
-                    href="#top"><Icon width="1.5rem" height="1.5rem" name="bi:arrow-bar-up" /></a
+                    href="#top"><Icon width={35} height={35} name="bi:arrow-bar-up" /></a
                 >
             </p>
             <p class="copyright">© Ben C 2024</p>
@@ -148,6 +148,40 @@ const canonical = Astro.url.toString();
         --h5-color: var(--text) !important;
         --h6-color: var(--text) !important;
         --muted-color: var(--text) !important;
+
+        /* Pico CSS Overrides (I don't wanna use Pico anymore :[) */
+        --pico-primary: var(--primary) !important;
+        --pico-secondary: var(--secondary) !important;
+        --pico-accent: var(--accent);
+        --pico-spacing: var(--spacing) !important;
+        --pico-primary-background: var(--primary) !important;
+        --pico-primary-hover-background: var(--primary-hover) !important;
+        --pico-primary-focus-background: var(--primary-focus) !important;
+        --pico-primary-underline: var(--primary) !important;
+        --pico-primary-hover: var(--primary-hover) !important;
+        --pico-primary-focus: var(--primary-focus) !important;
+        --pico-secondary-background: var(--secondary) !important;
+        --pico-secondary-hover-background: var(--secondary-hover) !important;
+        --pico-secondary-focus-background: var(--secondary-focus) !important;
+        --pico-secondary-underline: var(--secondary) !important;
+        --pico-secondary-hover: var(--secondary-hover) !important;
+        --pico-secondary-focus: var(--secondary-focus) !important;
+        --pico-tooltip-color: var(--muted-color) !important;
+        --pico-tooltip-background-color: var(--secondary) !important;
+        --pico-background-color: var(--background) !important;
+        --pico-card-background-color: var(--secondary) !important;
+        --pico-card-sectionning-background-color: var(--secondary) !important;
+        --pico-dropdown-background-color: var(--secondary) !important;
+        --pico-dropdown-hover-background-color: var(--secondary-hover) !important;
+        --pico-dropdown-border-color: var(--secondary) !important;
+        --pico-color: var(--text) !important;
+        --pico-h1-color: var(--primary) !important;
+        --pico-h2-color: var(--text) !important;
+        --pico-h3-color: var(--text) !important;
+        --pico-h4-color: var(--text) !important;
+        --pico-h5-color: var(--text) !important;
+        --pico-h6-color: var(--text) !important;
+        --pico-muted-color: var(--text) !important;
     }
 
     a:not([role="button"]):focus,

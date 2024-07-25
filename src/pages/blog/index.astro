@@ -17,12 +17,7 @@ const blogEntries = await getCollection("posts");
                         <a href={`/blog/posts/${p.slug}`}>{p.data.title}</a>
                     </h2>
                     <h3>
-                        {p.data.date.toDateString("en-us", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric"
-                        })}
+                        {p.data.date.toDateString()}
                     </h3>
                 </hgroup>
                 <p>
@@ -33,3 +28,15 @@ const blogEntries = await getCollection("posts");
         ))
     }
 </Layout>
+
+<style>
+    hgroup {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing);
+    }
+
+    h2 > a {
+        text-decoration: none !important;
+    }
+</style>

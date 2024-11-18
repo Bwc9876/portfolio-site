@@ -9,7 +9,9 @@ export interface Props {
 const projectEntries = await getCollection("projects");
 let entries = projectEntries.sort((a, b) => {
     const [yearA, yearB] = [a.data.timespan.from, b.data.timespan.from];
-    return yearB - yearA;
+    const [intA, intB] = [a.data.internalSort ?? 0, b.data.internalSort ?? 0];
+    const yearSort = yearB - yearA;
+    return yearSort === 0 ? intB - intA : yearSort;
 });
 
 const { limitTo } = Astro.props;

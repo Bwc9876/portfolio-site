@@ -10,6 +10,7 @@ const projectsCollection = defineCollection({
                 from: z.number(),
                 to: z.number().or(z.string()).optional()
             }),
+            internalSort: z.number().optional(),
             image: image(),
             links: z
                 .object({

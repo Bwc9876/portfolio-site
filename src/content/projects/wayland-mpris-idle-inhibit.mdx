@@ -1,0 +1,22 @@
+---
+name: Wayland MPRIS Idle Inhibit
+summary: A tool for inhibiting idle when media is playing
+timespan:
+    from: 2024
+tags:
+    - rust
+    - linux
+    - dbus
+    - wayland
+links:
+    github: Bwc9876/wayland-mpris-idle-inhibit
+image: ./wayland-mpris-idle-inhibit.png
+---
+
+A simple project that let me keep my computer on while it was playing media.
+
+One of the downsides of not having a full DE is you have to remake a lot of stuff yourself. One problem I kept having is my computer would suspend or sleep when I was playing media from Netflix, Spotify, etc.
+
+I looked for something to help me with this but I was only able to find something that inhibits idle when *any* sound is playing ever. This is a pretty good solution but I'd prefer it to be based on MPRIS instead.
+
+So I decided to make my own solution! This program simply polls MPRIS every few seconds over dbus to find if any media is playing. If it is, we hint to the compositor that the computer should not idle.

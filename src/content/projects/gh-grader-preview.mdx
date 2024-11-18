@@ -1,0 +1,19 @@
+---
+name: GitHub Grader Preview
+summary: A simple CLI for running the GitHub auto grader locally.
+timespan:
+    from: 2024
+tags:
+    - rust
+    - school
+    - github
+links:
+    github: Bwc9876/gh-grader-preview
+image: ./gh-grader-preview.png
+---
+
+A simple CLI that ran the GitHub autograder for me.
+
+I simply got tired of having to push, wait, change, push, wait, ad nauseum. So I decided to make a solution that let me run the grader locally based on the `autograding.json` file in the `.github` folder of all repos that I have for school.
+
+The only potential issue I can see with it is I'm using a different regex flavor (rust) than the one GitHub's autograder most likely uses (JavaScript). However most regexes my instructors put for the grader have worked fine.

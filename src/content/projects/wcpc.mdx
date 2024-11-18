@@ -1,0 +1,34 @@
+---
+name: WCPCI
+summary: An online judging system
+timespan:
+    from: 2024
+    to: 2025
+internalSort: 50
+tags:
+    - web
+    - rust
+    - rocket
+    - astro
+links:
+    github: Bwc9876/WCPCI/tree/dev
+image: ./wcpc.png
+---
+
+An Online Judging system (often shortened to OJ) is a tool used for programming competitions. It handles taking user submissions and... well... judging them. Usually this involves running the submission against a series of test cases.
+
+This was a big undertaking for me as a project but overall I learned so much about many, many things from it. Some cool features include.
+
+- WebSocket-based submission and feedback to users
+- Fully customizable branding so the site can be customized for different schools / brands
+- Git-based export of all problems for users, simply run `git clone` to get a copy of all your submissions!
+- From-scratch jailing system for running user code inside of utilizing various Linux kernel features
+- SAML integration so institutions can use their current auth instead of making users get new passwords
+- Live updating leaderboard with animations for when teams change places
+- Confetti :)
+
+For the Git export I learned how Git worked at a low-level and re-implemented the "dumb" clone protocol in Rust, which involved creating a fake repo over HTTP.
+
+For the jailing of user code I learned many parts of Linux process isolation. This was a very long process and arguably the most complex part of the site. I actually made a write-up on how the system works [within the repo](https://github.com/Bwc9876/WCPCI/blob/dev/src/run/RUNNER.md).
+
+As of right now the system has not been integrated at my institution but the application code is done. In the future I want to add support for teams.

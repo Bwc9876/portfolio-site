@@ -1,0 +1,24 @@
+---
+name: Transhuh
+summary: A tool for displaying notifications when a TransLoc bus is at a specific location.
+timespan:
+    from: 2024
+internalSort: 30
+tags:
+    - rust
+    - school
+    - dbus
+links:
+    github: Bwc9876/transhuh
+image: ./transhuh.png
+---
+
+This tool came from frustration with the bus system my school provides. We *do* get a live map of the entire route but what I want is a way to know when a bus is nearby so I know when to leave!
+
+To fix this, I simply reverse-engineered the API of the live web view of the buses and made my own program to query it (I think I can do this, the API requires no auth).
+
+The program is passed a series of locations (called points of interest) by their latitude and longitude. Using these the program then sends a notification whenever a bus is at one of these points of interest.
+
+This is in my opinion where Rust really helped me. Easily parsing the API responses and renaming the properties with `serde`, parsing CLI args with `clap`, and making it all error safe with `anyhow` was very easy that I was able to complete this program in one section of my calculus class.
+
+I want to expand this in the future to maybe a Discord bot or something I can run to get cross-platform notifications.

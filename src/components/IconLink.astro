@@ -1,29 +1,27 @@
 ---
 import { Icon } from "astro-icon/components";
-import ExtLink from "./ExtLink.astro";
+import type { HTMLAttributes } from "astro/types";
 
 export type LabelPlacement = "top" | "left" | "right" | "bottom" | "inside";
 
-export interface Props {
-    href: string;
-    icon: string;
-    size: number;
-    label: string;
-    placement: LabelPlacement;
-    overridePack?: string;
-    [rest: string | number]: unknown;
+export interface Props extends HTMLAttributes<"a"> {
+  icon: string;
+  label: string;
+  placement: LabelPlacement;
+  overridePack?: string;
+  isExternal?: boolean;
 }
 
-const { href, label, placement, icon, size, overridePack, ...rest } = Astro.props;
+const { label, placement, icon, isExternal, overridePack, ...rest } = Astro.props;
 ---
 
-<ExtLink
-    aria-label={label}
-    data-tooltip={placement !== "inside" ? label : null}
-    data-placement={placement !== "inside" ? placement : null}
-    href={href}
-    {...rest}
+<a
+  aria-label={label}
+  data-tooltip={placement !== "inside" ? label : null}
+  data-placement={placement !== "inside" ? placement : null}
+  target={isExternal ? "_blank" : ""}
+  {...rest}
 >
-    <Icon width={size} height={size} name={`${overridePack ?? "bi"}:${icon}`} />
-    {placement === "inside" && label}
-</ExtLink>
+  <Icon width="1.2em" height="1.2em" name={`${overridePack ?? "bi"}:${icon}`} />
+  {placement === "inside" && label}
+</a>

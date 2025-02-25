@@ -8,37 +8,38 @@ blogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title="The Cowsay - Ben C's Blog">
-    <h1>The Cowsay - Ben C's Blog</h1>
-    <p>Here you'll find my blog posts, most recent first</p>
-    {
-        blogEntries.map((p, i) => (
-            <>
-                {i === 0 && <hr />}
-                <hgroup>
-                    <h2>
-                        <a href={`/blog/posts/${p.slug}`}>{p.data.title}</a>
-                    </h2>
-                    <h3>
-                        {p.data.date.toDateString()}
-                    </h3>
-                </hgroup>
-                <p>
-                    {p.data.summary}&nbsp;&nbsp;<a href={`/blog/posts/${p.slug}`}>Read More</a>
-                </p>
-                <hr />
-            </>
-        ))
-    }
+  <h1>The Cowsay - Ben C's Blog</h1>
+  <p>Here you'll find my blog posts, most recent first</p>
+  {
+    blogEntries.map((p, i) => (
+      <>
+        {i === 0 && <hr />}
+        <div>
+          <h2>
+            <a href={`/blog/${p.slug}`}>{p.data.title}</a>
+          </h2>
+          <p>{p.data.date.toDateString()}</p>
+        </div>
+        <p>
+          {p.data.summary}&nbsp;&nbsp;<a href={`/blog/${p.slug}`}>Read More</a>
+        </p>
+        <hr />
+      </>
+    ))
+  }
 </Layout>
 
 <style>
-    hgroup {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing);
-    }
+  div h2 {
+    margin-bottom: var(--1);
+  }
 
-    h2 > a {
-        text-decoration: none !important;
-    }
+  div p {
+    margin-top: 0;
+    font-size: var(--3);
+  }
+
+  h2 > a {
+    text-decoration: none !important;
+  }
 </style>

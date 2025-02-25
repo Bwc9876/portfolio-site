@@ -1,0 +1,94 @@
+---
+import CowSay from "@components/blog/CowSay.astro";
+import Layout from "@layouts/Layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts");
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+};
+
+const { entry } = Astro.props as { entry: CollectionEntry<"posts"> };
+const { Content, headings } = await entry.render();
+---
+
+<Layout title={entry.data.title} description={entry.data.summary}>
+  <h1>{entry.data.title}</h1>
+  <CowSay text={entry.data.cowsay} />
+  <div class="wrapper">
+    <div>
+      <Content />
+    </div>
+    <div class="toc">
+      <div>
+        <span>On This Page</span>
+        <ul>
+          {
+            headings.map((h) => (
+              <li>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  div.wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  div.wrapper > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 1200px) {
+    div.wrapper {
+      flex-direction: row;
+      gap: 4rem;
+    }
+  }
+
+  div.toc {
+    width: 100%;
+  }
+
+  div.toc div {
+    top: 5rem;
+    margin-top: 1rem;
+    position: sticky;
+  }
+
+  div.toc ul li {
+    list-style-type: none;
+  }
+</style>
+
+<style is:global>
+  pre {
+    padding: var(--small);
+    border-radius: var(--1);
+    background-color: #24292e;
+    box-sizing: border-box;
+  }
+
+  img {
+    border: solid 1px var(--text) !important;
+    border-radius: 5px;
+    max-width: 100% !important;
+    margin: auto;
+    object-fit: contain;
+  }
+
+  pre {
+    overflow-x: auto;
+    width: 100%;
+  }
+</style>

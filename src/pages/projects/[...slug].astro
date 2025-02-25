@@ -5,11 +5,11 @@ import Layout from "@layouts/Layout.astro";
 import IconLink from "@components/IconLink.astro";
 import { Icon } from "astro-icon/components";
 export async function getStaticPaths() {
-    const renameEntries = await getCollection("projects");
-    return renameEntries.map((entry) => ({
-        params: { slug: entry.slug },
-        props: { entry }
-    }));
+  const renameEntries = await getCollection("projects");
+  return renameEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
 }
 const { entry } = Astro.props as { entry: CollectionEntry<"projects"> };
 const { Content } = await entry.render();
@@ -19,124 +19,127 @@ const firstOtherLink = entry.data.links?.other?.[0];
 const restOther = entry.data.links?.other?.slice(1);
 
 const og = {
-    src: entry.data.image,
-    alt: entry.data.name
+  src: entry.data.image,
+  alt: entry.data.name
 };
 ---
 
 <Layout title={entry.data.name} description={entry.data.summary} keywords={entry.data.tags} og={og}>
-    <div class="hero">
-        <div class="txt">
-            <hgroup>
-                <h1 class="gradient-text">{entry.data.name}</h1>
-                <h2>
-                    {entry.data.timespan.from}{
-                        entry.data.timespan.to && <> - {entry.data.timespan.to}</>
-                    } •
-                    {entry.data.tags.join(" • ")}
-                </h2>
-            </hgroup>
-            <p>{entry.data.summary}</p>
-            <div class="ctas">
-                {
-                    entry.data.links?.github && (
-                        <span>
-                            <a href={`https://github.com/${entry.data.links.github}`} role="button">
-                                <Icon name="bi:github" size={25} /> View On GitHub
-                            </a>
-                        </span>
-                    )
-                }
-                {
-                    firstOtherLink && (
-                        <span>
-                            <a href={firstOtherLink.url} role="button" class="secondary">
-                                <Icon
-                                    name={`${firstOtherLink.iconPackOverride ?? "bi"}:${
-                                        firstOtherLink.icon
-                                    }`}
-                                    size={25}
-                                />
-                                {firstOtherLink.label}
-                            </a>
-                        </span>
-                    )
-                }
-            </div>
-            <div class="links">
-                {
-                    restOther &&
-                        restOther.map((l) => (
-                            <span>
-                                <IconLink
-                                    icon={l.icon}
-                                    overridePack={l.iconPackOverride}
-                                    size={25}
-                                    href={l.url}
-                                    placement="bottom"
-                                    label={l.label}
-                                />
-                            </span>
-                        ))
-                }
-            </div>
-        </div>
-        <div class="img-container">
-            <Image
-                format="webp"
-                width={474}
-                height={474}
-                alt={entry.data.name}
-                src={entry.data.image}
-            />
-        </div>
+  <div class="hero colrow-lg-rev">
+    <div class="txt">
+      <div class="project-header">
+        <h1 class="gradient-text">{entry.data.name}</h1>
+        <p>
+          {entry.data.timespan.from}{entry.data.timespan.to && <> - {entry.data.timespan.to}</>} •
+          {entry.data.tags.join(" • ")}
+        </p>
+      </div>
+      <p>{entry.data.summary}</p>
+      <div class="ctas">
+        {
+          entry.data.links?.github && (
+            <span>
+              <a href={`https://github.com/${entry.data.links.github}`} role="button">
+                <Icon name="bi:github" /> View On GitHub
+              </a>
+            </span>
+          )
+        }
+        {
+          firstOtherLink && (
+            <span>
+              <a href={firstOtherLink.url} role="button" class="secondary">
+                <Icon name={`${firstOtherLink.iconPackOverride ?? "bi"}:${firstOtherLink.icon}`} />
+                {firstOtherLink.label}
+              </a>
+            </span>
+          )
+        }
+      </div>
+      <div class="links">
+        {
+          restOther &&
+            restOther.map((l) => (
+              <span>
+                <IconLink
+                  icon={l.icon}
+                  overridePack={l.iconPackOverride}
+                  href={l.url}
+                  placement="bottom"
+                  label={l.label}
+                />
+              </span>
+            ))
+        }
+      </div>
     </div>
-    <Content />
+    <div class="colrow-lg-rev img-container">
+      <Image format="webp" width={474} height={474} alt={entry.data.name} src={entry.data.image} />
+    </div>
+  </div>
+  <Content />
 </Layout>
 
 <style>
+  div.project-header h1 {
+    margin-bottom: var(--1);
+  }
+
+  div.project-header p {
+    font-size: var(--4);
+    margin-top: 0;
+  }
+
+  .hero {
+    display: flex;
+    gap: var(--5);
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--4) 0;
+  }
+
+  @media (width <= 575px) {
     .hero {
-        display: flex;
-        flex-direction: row;
-        gap: calc(var(--spacing) * 5);
-        justify-content: space-between;
-        align-items: center;
-        margin: calc(var(--spacing) * 10) 0;
+      flex-direction: column-reverse;
     }
+  }
 
-    @media (width <= 575px) {
-        .hero {
-            flex-direction: column-reverse;
-        }
-    }
+  .hero .txt {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--2);
+  }
 
-    .hero .txt {
-        width: 100%;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 2);
-    }
+  .hero .ctas {
+    display: flex;
+    align-items: center;
+    gap: var(--2);
+  }
 
-    .hero .ctas {
-        display: flex;
-        align-items: center;
-        gap: calc(var(--spacing) * 2);
-    }
+  .hero .ctas a[role="button"] {
+    display: flex;
+    align-items: center;
+    gap: var(--small);
+  }
 
-    .hero .ctas a[role="button"] {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing);
-    }
+  .hero .img-container {
+    flex-grow: 1;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+    display: flex;
+    margin: auto;
+  }
 
-    .hero .img-container {
-        flex-grow: 1;
-        width: 100%;
-    }
+  .hero .img-container img {
+    border-radius: var(--2);
+    object-fit: contain;
+  }
 
-    .links {
-        display: flex;
-        gap: calc(var(--spacing) * 2);
-    }
+  .links {
+    display: flex;
+    gap: var(--2);
+  }
 </style>

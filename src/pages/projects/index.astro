@@ -7,9 +7,20 @@ const projectEntries = (await getCollection("projects")).length;
 ---
 
 <Layout title="Projects" description="Ben C's Projects">
-    <hgroup>
-        <h1 class="gradient-text">My Projects</h1>
-        <h2>Sorted By Year • {projectEntries} Total</h2>
-    </hgroup>
-    <ProjectGrid />
+  <hgroup>
+    <h1 class="gradient-text">My Projects</h1>
+    <p>Sorted By Year • {projectEntries} Total</p>
+  </hgroup>
+  <ProjectGrid />
 </Layout>
+
+<style>
+  h1 {
+    margin-bottom: var(--1);
+  }
+
+  p {
+    font-size: var(--3);
+    margin-top: 0;
+  }
+</style>

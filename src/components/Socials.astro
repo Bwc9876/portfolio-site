@@ -2,48 +2,48 @@
 import IconLink, { type LabelPlacement } from "@components/IconLink.astro";
 
 type SocialData = Array<{
-    name: string;
-    icon: string;
-    link: string;
-    overridePack?: string;
+  name: string;
+  icon: string;
+  link: string;
+  overridePack?: string;
 }>;
 
 export interface Props {
-    labelPlacement: LabelPlacement;
-    makeLinksUnfocusable?: boolean;
-    [rest: string | number | symbol]: unknown;
+  labelPlacement: LabelPlacement;
+  makeLinksUnfocusable?: boolean;
+  [rest: string | number | symbol]: unknown;
 }
 
 const socialData: SocialData = [
-    { name: "GitHub", icon: "github", link: "https://github.com/Bwc9876" },
-    { name: "X", icon: "twitter-x", link: "https://x.com/Bwc9876" },
-    { name: "LinkedIn", icon: "linkedin", link: "https://www.linkedin.com/in/bwc9876" },
-    { name: "PayPal", icon: "paypal", link: "https://paypal.me/bwc9876" },
+  { name: "GitHub", icon: "github", link: "https://github.com/Bwc9876" },
+  { name: "Twitter (X)", icon: "twitter-x", link: "https://x.com/Bwc9876" },
+  { name: "LinkedIn", icon: "linkedin", link: "https://www.linkedin.com/in/bwc9876" },
+  { name: "PayPal", icon: "paypal", link: "https://paypal.me/bwc9876" }
 ];
 
 const { labelPlacement, makeLinksUnfocusable, ...rest } = Astro.props;
 ---
 
-<ul {...rest}>
-    {
-        socialData.map((s) => (
-            <li>
-                <IconLink
-                    icon={s.icon}
-                    overridePack={s.overridePack}
-                    size={25}
-                    tabindex={makeLinksUnfocusable ? "-1" : undefined}
-                    href={s.link}
-                    label={s.name}
-                    placement={labelPlacement}
-                />
-            </li>
-        ))
-    }
-</ul>
+<span {...rest}>
+  {
+    socialData.map((s) => (
+      <IconLink
+        icon={s.icon}
+        overridePack={s.overridePack}
+        href={s.link}
+        label={s.name}
+        placement={labelPlacement}
+        isExternal
+      />
+    ))
+  }
+</span>
 
 <style>
-    ul {
-        padding-left: 0 !important;
-    }
+  span {
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--2);
+  }
 </style>

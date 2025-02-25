@@ -1,187 +1,136 @@
 ---
 import ProjectGrid from "@components/projects/ProjectGrid.astro";
 import Layout from "@layouts/Layout.astro";
+import cow from "@assets/cow.png";
 import { Image } from "astro:assets";
 ---
 
 <Layout title="Ben C's Portfolio" appendTitle={false}>
-    <div class="hero">
-        <div>
-            <h1>Ben C's <span class="gradient-text">Portfolio</span></h1>
-            <p>
-                Hi there! I'm Ben C, a college student looking to enter the world of software
-                development, specifically full-stack web development.
-            </p>
-            <p>
-                I like to try a lot of things, from <a href="/projects/ow-new-horizons">
-                    modding games</a
-                >
-                 to building
-                <a href="/projects/menagerie">websites</a> and
-                <a href="/projects/ow-mod-man">desktop apps</a>.<br /> I enjoy pretty much any
-                aspect of software development.
-            </p>
-            <div class="ctas">
-                <a href="/projects" role="button" class="primary">View My Projects</a>
-                <a href="#about-me" role="button" class="secondary">About Me</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <Image
-                width={150}
-                height={150}
-                format="webp"
-                alt="Ben C's Avatar"
-                src="https://avatars.githubusercontent.com/u/25644444?v=4"
-            />
-        </div>
+  <div class="hero colrow-lg-rev">
+    <div>
+      <h1>Ben C's <span class="gradient-text">Portfolio</span></h1>
+      <p>
+        Hi there! I'm Ben C, a college student looking to enter the world of software development,
+        specifically full-stack web development.
+      </p>
+      <p>
+        I like to try a lot of things, from <a href="/projects/ow-new-horizons"> modding games</a>
+        to building
+        <a href="/projects/menagerie">websites</a> and
+        <a href="/projects/ow-mod-man">desktop apps</a>.<br /> I enjoy pretty much any aspect of software
+        development.
+      </p>
+      <div class="ctas">
+        <a href="/projects" role="button" class="primary">View My Projects</a>
+        <a href="#about-me" role="button" class="secondary">About Me</a>
+      </div>
     </div>
+    <div class="hero-image">
+      <Image width={150} height={150} format="webp" alt="Ben C's Avatar" src={cow} />
+    </div>
+  </div>
 
-    <h2>What I Know</h2>
+  <h2 id="about-me">About Me</h2>
+  <div class="about-section">
     <p>
-        I've tried my best to be a well-rounded developer over the years, here's a list of some of
-        the things I work in:
+      I'm a 20-year-old developer from Pennsylvania, USA. I first started programming with Unity
+      games but then quickly began doing web development and then expanded into anything I was
+      interested in. I've been programming for about six years now and hope that I can continue to
+      pursue a career in this industry.
     </p>
-    <ul class="know-list">
-        <li>Rust</li>
-        <li>Python</li>
-        <li>C#</li>
-        <li>Unity</li>
-        <li>Django</li>
-        <li>CSS / SASS</li>
-        <li>JavaScript / TypeScript</li>
-        <li>Nix</li>
-        <li>GitHub Actions</li>
-        <li>React</li>
-        <li>Astro</li>
-        <li>Tauri</li>
-        <li>Bash / Nushell</li>
-    </ul>
+    <p>
+      After programming on my own for about 3 years, I went to trade school for Information
+      Technology Programming and learned about best practices and the software development life
+      cycle. I participated in both SkillsUSA and TSA and was awarded 1st place in states for Video
+      Game Design in TSA, as well as 1st place in Computer Programming at states and 4th at
+      nationals in SkillsUSA. Throughout my time at trade school, I received my OSHA, IC3, and
+      Pennsylvania State Skills (Information Technology Programming) certifications.
+    </p>
+    <p>
+      Also during my time at trade school, I joined an online community of modders for the game
+      Outer Wilds. This community helped me go above and beyond with my development, continually
+      motivating me to try new things and publish my work.
+    </p>
+    <p>
+      I'm currently in college majoring in Computer Science. I'm hoping to graduate with a Bachelors
+      or Masters.
+    </p>
+  </div>
 
-    <h2 id="about-me">About Me</h2>
-    <div class="about-section">
-        <p>
-            I'm a 20-year-old developer from Pennsylvania, USA. I first started programming with
-            Unity games but then quickly began doing web development and then expanded into anything
-            I was interested in. I've been programming for about six years now and hope that I can
-            continue to pursue a career in this industry.
-        </p>
-        <p>
-            After programming on my own for about 3 years, I went to trade school for Information
-            Technology Programming and learned about best practices and the software development
-            life cycle. I participated in both SkillsUSA and TSA and was awarded 1st place in states
-            for Video Game Design in TSA, as well as 1st place in Computer Programming at states and
-            4th at nationals in SkillsUSA. Throughout my time at trade school, I received my OSHA,
-            IC3, and Pennsylvania State Skills (Information Technology Programming) certifications.
-        </p>
-        <p>
-            Also during my time at trade school, I joined an online community of modders for the
-            game Outer Wilds. This community helped me go above and beyond with my development,
-            continually motivating me to try new things and publish my work.
-        </p>
-        <p>
-            I'm currently in college majoring in Computer Science. I'm hoping to graduate with a
-            Bachelors or Masters.
-        </p>
-    </div>
-
-    <hgroup>
-        <h2>Recent Projects</h2>
-        <h3>Sorted By Year</h3>
-    </hgroup>
-    <ProjectGrid limitTo={6} />
-    <div class="view-more">
-        <a href="/projects">View All Projects</a>
-    </div>
+  <h2>Recent Projects</h2>
+  <ProjectGrid limitTo={6} />
+  <div class="view-more">
+    <a href="/projects">View All Projects</a>
+  </div>
 </Layout>
 
 <style>
-    .hero {
-        display: flex;
-        flex-direction: row;
-        gap: calc(var(--spacing) * 10);
-        justify-content: space-between;
-        align-items: center;
-        margin: calc(var(--spacing) * 10) 0;
-    }
+  .hero {
+    display: flex;
+    gap: var(--2);
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .hero .ctas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--spacing);
-    }
+  .hero .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--1);
+  }
 
-    @keyframes glow {
-        0% {
-            box-shadow: 0 0 0 0 var(--primary);
-        }
-        100% {
-            box-shadow: 0 0 450px 5px var(--primary);
-        }
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 0 0 var(--primary);
     }
+    100% {
+      box-shadow: 0 0 450px 5px var(--primary);
+    }
+  }
 
-    .hero-image {
-        --anim-props: 900ms 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1 forwards;
-        display: flex;
-        align-items: center;
-        position: relative;
-        animation: glow var(--anim-props);
-        border-radius: 50%;
-    }
+  .hero-image {
+    --anim-props: 900ms 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1 forwards;
+    display: flex;
+    align-items: center;
+    position: relative;
+    animation: glow var(--anim-props);
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin: var(--10);
+  }
 
-    @media (width <= 575px) {
-        .hero-image {
-            display: none;
-        }
-    }
+  .hero-image img {
+    width: var(--12);
+    height: var(--12);
+    z-index: 100;
+    clip-path: circle();
+  }
 
-    .hero-image img {
-        width: 250px;
-        z-index: 100;
-        clip-path: circle();
+  @keyframes pop {
+    from {
+      transform: scale(0);
     }
+    to {
+      transform: scale(1.8);
+    }
+  }
 
-    @keyframes pop {
-        from {
-            transform: scale(0);
-        }
-        to {
-            transform: scale(1.8);
-        }
-    }
+  .hero-image:after {
+    animation: pop var(--anim-props);
+    content: "";
+    mask: url("/pfp-lines.svg") no-repeat 50% 50%;
+    -webkit-mask: url("/pfp-lines.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    display: inline-block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background-image: radial-gradient(circle at center, var(--primary) 0, var(--accent) 100%);
+  }
 
-    .hero-image:after {
-        animation: pop var(--anim-props);
-        content: "";
-        mask: url("/pfp-lines.svg") no-repeat 50% 50%;
-        -webkit-mask: url("/pfp-lines.svg") no-repeat 50% 50%;
-        -webkit-mask-size: cover;
-        mask-size: cover;
-        display: inline-block;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        background-image: radial-gradient(circle at center, var(--primary) 0, var(--accent) 100%);
-    }
-
-    .view-more {
-        margin-top: calc(var(--spacing) * 3);
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .know-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: calc(var(--spacing) * 2);
-    }
-
-    .know-list li {
-        list-style: none;
-        padding: var(--spacing);
-        border: 0.1rem solid var(--accent);
-        background-color: var(--secondary);
-        border-radius: 50px;
-    }
+  .view-more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 </style>

@@ -3,94 +3,91 @@ import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
-    project: CollectionEntry<"projects">;
+  project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
 ---
 
 <a href={`/projects/${project.slug}/`}>
-    <div class="card">
-        <div class="header">
-            <strong class="project-name">{project.data.name}</strong>
-            <div>
-                <Image
-                    width={500}
-                    height={500}
-                    format="webp"
-                    src={project.data.image}
-                    alt={project.data.name}
-                />
-            </div>
-        </div>
-        <span>{project.data.summary}</span>
-        <div class="footer">
-            <small>{project.data.tags.join(" • ")}</small>
-        </div>
+  <div class="card">
+    <div class="header">
+      <strong class="project-name">{project.data.name}</strong>
+      <div>
+        <Image format="webp" src={project.data.image} alt={project.data.name} />
+      </div>
     </div>
+    <span>{project.data.summary}</span>
+    <div class="footer">
+      <small>{project.data.tags.join(" • ")}</small>
+    </div>
+  </div>
 </a>
 
 <style>
-    :not(.project-name) {
-        text-decoration: none !important;
-    }
+  :not(.project-name) {
+    text-decoration: none !important;
+  }
 
-    div.card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        background-color: var(--secondary);
-        padding: calc(var(--spacing) * 2);
-        gap: calc(var(--spacing) * 3);
-        border-radius: 5px;
-    }
+  div.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--secondary);
+    padding: var(--2);
+    gap: var(--3);
+    border-radius: 5px;
+  }
 
-    a {
-        margin-bottom: 0 !important;
-        margin-top: 0 !important;
-    }
+  a {
+    margin: var(--4) 0;
+  }
 
-    a:hover {
-        transform: translateY(calc(var(--spacing) * -0.5));
-        transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
-    }
+  a img {
+    height: var(--14);
+    border-radius: var(--2);
+  }
 
-    a:hover img {
-        transform: scale(1.06);
-    }
+  a:hover {
+    transform: translateY(calc(var(--1) * -1));
+    transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
+  }
 
-    div.header {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 2);
-    }
+  a:hover img {
+    transform: scale(1.06);
+  }
 
-    div.header > div {
-        overflow: hidden;
-        width: 100%;
-    }
+  div.header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--2);
+  }
 
-    div.header > strong {
-        font-size: larger;
-    }
+  div.header > div {
+    overflow: hidden;
+    width: 100%;
+  }
 
-    div.footer {
-        text-align: center;
-    }
+  div.header > strong {
+    font-size: larger;
+  }
 
-    span {
-        flex-grow: 1;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  div.footer {
+    text-align: center;
+  }
 
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
-    }
+  span {
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    object-fit: cover;
+    width: 90%;
+    transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
+  }
 </style>

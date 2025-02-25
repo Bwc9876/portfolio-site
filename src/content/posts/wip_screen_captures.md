@@ -77,10 +77,10 @@ Now the main part, we'll send a notification that the screenshot was saved, and 
 
 I want four actions for the screenshot:
 
--   Open
--   Open Folder
--   Edit
--   Delete
+- Open
+- Open Folder
+- Edit
+- Delete
 
 Also since grimblast saves the screenshot as a png, I can pass it as the icon of the notification.
 
@@ -91,11 +91,11 @@ let choice = notify-send --app-name=screengrab -i $file_path -t 7500 --action=op
 A long command here, `notify-send` allows us to send a notification to the currently running notification daemon.
 In my case I'm using [swaync](https://github.com/ErikReider/SwayNotificationCenter).
 
--   `--app-name` is the name of the application that sent the notification, I say screengrab here so swaync will show an icon in addition to the image, also so I can play a camera shutter sound when the notification is sent.
--   `-i` is the icon to display in the notification, in this case the screenshot we just took.
--   `-t` is the time in milliseconds to show the notification
--   `--action` is actions to display in the notification, `name=Text`
--   First position argument is the notification title, and second is the body.
+- `--app-name` is the name of the application that sent the notification, I say screengrab here so swaync will show an icon in addition to the image, also so I can play a camera shutter sound when the notification is sent.
+- `-i` is the icon to display in the notification, in this case the screenshot we just took.
+- `-t` is the time in milliseconds to show the notification
+- `--action` is actions to display in the notification, `name=Text`
+- First position argument is the notification title, and second is the body.
 
 With that we get a neat notification when we screenshot.
 
@@ -103,9 +103,9 @@ With that we get a neat notification when we screenshot.
 
 Now we need to handle each action, the chosen action is returned by notify-send, so we can match on that.
 
--   "Open" and "Open Folder" are pretty simple, just pass `$file_path` and `$file_path | path dirname` to `xdg-open`
--   "Edit" I'll simply pass the file path to my editor, I chose [swappy](https://github.com/jtheoof/swappy) because of it's simplicity and ease of use.
--   "Delete" I'll just remove the file.
+- "Open" and "Open Folder" are pretty simple, just pass `$file_path` and `$file_path | path dirname` to `xdg-open`
+- "Edit" I'll simply pass the file path to my editor, I chose [swappy](https://github.com/jtheoof/swappy) because of it's simplicity and ease of use.
+- "Delete" I'll just remove the file.
 
 ```nushell
 match $choice {

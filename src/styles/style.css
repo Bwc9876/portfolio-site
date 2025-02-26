@@ -273,14 +273,28 @@ h5 {
   -webkit-text-fill-color: transparent;
 }
 
+.colrow-lg {
+  display: flex;
+  flex-direction: column;
+}
+
 .colrow-lg-rev {
   display: flex;
   flex-direction: column-reverse;
 }
 
+.hide-lg {
+  display: none !important;
+}
+
 @media (--lg) {
-  .colrow-lg-rev {
+  .colrow-lg-rev,
+  .colrow-lg {
     flex-direction: row;
+  }
+
+  .hide-lg {
+    display: flex !important;
   }
 }
 

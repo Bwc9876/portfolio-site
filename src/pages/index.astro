@@ -25,7 +25,7 @@ import { Image } from "astro:assets";
         <a href="#about-me" role="button" class="secondary">About Me</a>
       </div>
     </div>
-    <div class="hero-image">
+    <div class="hero-image hide-lg">
       <Image width={150} height={150} format="webp" alt="Ben C's Avatar" src={cow} />
     </div>
   </div>
@@ -99,8 +99,9 @@ import { Image } from "astro:assets";
   }
 
   .hero-image img {
-    width: var(--12);
-    height: var(--12);
+    width: var(--11);
+    height: var(--11);
+    position: relative;
     z-index: 100;
     clip-path: circle();
   }

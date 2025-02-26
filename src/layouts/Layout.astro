@@ -69,7 +69,7 @@ const canonical = Astro.url.toString();
   </head>
   <body id="top">
     <header class="container">
-      <nav class="colrow-md">
+      <nav class="colrow-lg">
         <a href="/"
           ><Image
             class="nav-icon"
@@ -81,17 +81,18 @@ const canonical = Astro.url.toString();
           />
           <span><b class="gradient-text">Bwc9876</b>.dev</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/projects">Projects</a>
-        <a href="/blog">Blog</a>
-        <span class="spacer"></span>
+        <span>
+          <a href="/">Home</a>
+          <a href="/projects">Projects</a>
+          <a href="/blog">Blog</a>
+        </span>
         <Socials labelPlacement="bottom" />
       </nav>
     </header>
     <main class="container">
       <slot />
     </main>
-    <footer class="container colrow-md">
+    <footer class="container colrow-lg">
       <p>
         <IconLink
           label="Back To Top"
@@ -140,7 +141,13 @@ const canonical = Astro.url.toString();
     justify-content: center;
   }
 
-  span.spacer {
+  nav > span {
+    display: flex;
+    flex-direction: row;
+    gap: var(--2);
+  }
+
+  nav > span:nth-child(2) {
     flex-grow: 1;
   }
 

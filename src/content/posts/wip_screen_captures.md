@@ -131,8 +131,7 @@ And that's it! I now have a fairly robust screenshot script.
 Now in terms of actually calling it I'll be binding it to `Win` + `Shift` + `S` in Hyprland, as
 well as `PrintScreen`.
 
-In home manager i simply have to add these strings to my `wayland.windowManager.hyprland.settings.bind`
-array:
+In home manager I simply have to add these strings to my Hyprland binds
 
 ```nix
 wayland.windowManager.hyprland.settings.bind = [

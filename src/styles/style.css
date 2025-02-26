@@ -127,11 +127,6 @@ body {
 
 a {
   color: var(--accent-600);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 button,
@@ -150,6 +145,7 @@ button.primary,
   cursor: pointer;
   transition: background-color 100ms linear;
   color: var(--background-800);
+  text-decoration: none;
 }
 
 button.secondary,

@@ -7,6 +7,7 @@ import Socials from "@components/Socials.astro";
 import IconLink from "@components/IconLink.astro";
 import "@styles/style.css";
 import type { ImageMetadata } from "astro";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title: string;
@@ -66,6 +67,7 @@ const canonical = Astro.url.toString();
       title="Ben C's Blog"
       href={new URL("feed.xml", Astro.site)}
     />
+    <ClientRouter />
   </head>
   <body id="top">
     <header class="container">
@@ -89,10 +91,10 @@ const canonical = Astro.url.toString();
         <Socials labelPlacement="bottom" />
       </nav>
     </header>
-    <main class="container">
+    <main transition:name="main" class="container">
       <slot />
     </main>
-    <footer class="container colrow-lg">
+    <footer transition:name="footer" class="container colrow-lg">
       <p>
         <IconLink
           label="Back To Top"
@@ -118,6 +120,7 @@ const canonical = Astro.url.toString();
     gap: var(--4);
     min-height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
     --section-border: 1px solid var(--accent);
   }
 

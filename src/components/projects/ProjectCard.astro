@@ -14,7 +14,12 @@ const { project } = Astro.props;
     <div class="header">
       <strong class="project-name">{project.data.name}</strong>
       <div>
-        <Image format="webp" src={project.data.image} alt={project.data.name} />
+        <Image
+          transition:name={`project-img-${project.slug}`}
+          format="webp"
+          src={project.data.image}
+          alt={project.data.name}
+        />
       </div>
     </div>
     <span>{project.data.summary}</span>

@@ -74,7 +74,14 @@ const og = {
       </div>
     </div>
     <div class="colrow-lg-rev img-container">
-      <Image format="webp" width={474} height={474} alt={entry.data.name} src={entry.data.image} />
+      <Image
+        transition:name={`project-img-${entry.slug}`}
+        format="webp"
+        width={474}
+        height={474}
+        alt={entry.data.name}
+        src={entry.data.image}
+      />
     </div>
   </div>
   <Content />

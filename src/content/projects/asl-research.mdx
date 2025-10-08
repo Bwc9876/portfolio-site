@@ -1,0 +1,26 @@
+---
+name: ASL Interface
+summary: An interface to translate ASL to/from English
+timespan:
+  from: 2025
+internalSort: 50
+tags:
+  - web
+  - tailwind
+  - astro
+  - python
+  - flask
+links:
+  github: amiruzzaman/ASL_research
+image: ./asl-research.png
+---
+
+This project is part of an ongoing research project at West Chester University. I'm working on the web interface which uses the models created in the research to provide translation of ASL to/from English.
+
+The frontend is built with AstroJS using Tailwind and daisyUI. It's pretty simple with only three pages. The main part is the animation playback system, which uses a Canvas to dynamically draw recorded ASL gloss animations.
+
+The animations are recorded beforehand and landmarked using Google MediaPipe. The backend (more on that in a sec) serves those as msgpacked files. I chose msgpack since these are pretty big animations so I wanted a more compact format than JSON. The animation system can play back these files at different speeds. The interface also allows you to speak and it will live-translate the English speech to ASL.
+
+The backend is written in Python using Flask. It's not the most complex thing, really just serves files and passes video data to aforementioned models. That's not to say the models aren't complex or anything, just that my part of the backend is simple.
+
+This was a fun project to work on with a team. It was especially challenging getting MediaPipe to work with Nix (damn you Bazel). I ended up having to pull the wheel file from PyPi instead of building it from source.

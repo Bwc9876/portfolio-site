@@ -17,8 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Setup Nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Nix Build
         run: nix build .#

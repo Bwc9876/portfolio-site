@@ -2,7 +2,6 @@ import rawTypst from "@assets/resume.typ?raw";
 import { spawn } from "node:child_process";
 
 const compileTypst = (raw: string): Promise<Buffer> => {
-  console.debug(process.env["TYPST_PACKAGE_PATH"])
   const cmd = spawn("typst", ["compile", "-f", "pdf", "-", "-"], {stdio: "pipe"});
 
   cmd.stdin.write(raw);

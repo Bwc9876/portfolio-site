@@ -21,7 +21,7 @@ const compileTypst = (raw: string): Promise<Buffer> => {
       if (stdout === null) {
         stdout = data;
       } else {
-        stdout += data;
+        stdout = Buffer.concat([stdout, data]);
       }
     });
 
@@ -36,8 +36,6 @@ const compileTypst = (raw: string): Promise<Buffer> => {
         reject(new Error(`Exited with code ${code} Stderr: ${stderr}`));
       } 
     });
-
-
   });
 };
 

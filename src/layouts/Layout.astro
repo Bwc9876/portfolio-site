@@ -74,7 +74,7 @@ const canonical = Astro.url.toString();
   </head>
   <body id="top">
     <header class="container">
-      <nav class="colrow-lg">
+      <nav>
         <a href="/"
           ><Image
             class="nav-icon"
@@ -97,7 +97,7 @@ const canonical = Astro.url.toString();
     <main transition:name="main" class="container">
       <slot />
     </main>
-    <footer transition:name="footer" class="container colrow-lg">
+    <footer transition:name="footer" class="container">
       <p>
         <IconLink
           label="Back To Top"
@@ -107,7 +107,7 @@ const canonical = Astro.url.toString();
           href="#top"
         />
       </p>
-      <p class="copyright">© Ben C 2025</p>
+      <p class="copyright">© Ben C 2026</p>
       <Socials labelPlacement="top" />
     </footer>
   </body>
@@ -120,7 +120,6 @@ const canonical = Astro.url.toString();
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--4);
     min-height: 100vh;
     width: 100vw;
     overflow-x: hidden;
@@ -133,9 +132,25 @@ const canonical = Astro.url.toString();
 
   nav {
     display: flex;
+    gap: var(--1);
+    flex-direction: column;
     align-items: center;
-    gap: var(--3);
     padding: var(--2) 0;
+  }
+
+  nav > :nth-child(3) {
+    display: none;
+  }
+
+  @media (width >= 1050px) {
+    nav {
+      gap: var(--3);
+      flex-direction: row;
+    }
+
+    nav > :nth-child(3) {
+      display: flex;
+    }
   }
 
   nav a {
@@ -172,12 +187,18 @@ const canonical = Astro.url.toString();
     flex-grow: 1;
   }
 
+  footer > p {
+    margin: var(--1);
+  }
+
   footer {
+    font-size: var(--2);
     border-top: var(--section-border);
+    margin-top: var(--4);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--2);
     padding: var(--2) 0;
   }
 </style>

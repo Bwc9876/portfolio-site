@@ -1,7 +1,7 @@
 ---
 title: Steam Remote Play Headless
 date: 2026-01-17
-summary: Using gamescope headless to run Steam remote play
+summary: How I'm using gamescope headless to run Steam remote play.
 cowsay: We have Stadia at home
 ---
 
@@ -76,7 +76,7 @@ I'll usually start this in a GNU screen session so it doesn't stop Steam if my S
 screen -S steam # Before running gamescope
 ```
 
-## Renicing
+## Re-nicing
 
 Finally just renice all gamescope processes because it can start to degrade in performance after a
 while allegedly.

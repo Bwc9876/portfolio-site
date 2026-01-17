@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 ---
 
 <Layout title="Ben C's Portfolio" appendTitle={false}>
-  <div class="hero colrow-lg-rev">
+  <div class="hero">
     <div>
       <h1>Ben C's <span class="gradient-text">Portfolio</span></h1>
       <p>
@@ -21,16 +21,10 @@ import { Image } from "astro:assets";
         development.
       </p>
       <div class="ctas">
-        <a href="/projects" role="button" class="primary">View My Projects</a>
-        <a href="#about-me" role="button" class="secondary">About Me</a>
+        <a href="/projects" role="button" class="secondary">View My Projects</a>
       </div>
     </div>
-    <style>
-      .hide-lg {
-        display: none;
-      }
-    </style>
-    <div class="hero-image hide-lg">
+    <div class="hero-image">
       <Image width={150} height={150} format="webp" alt="Ben C's Avatar" src={cow} />
     </div>
   </div>
@@ -52,7 +46,7 @@ import { Image } from "astro:assets";
   <h2>Recent Projects</h2>
   <ProjectGrid limitTo={6} />
   <div class="view-more">
-    <a href="/projects">View All Projects</a>
+    <a href="/projects" role="button" class="secondary">View All Projects</a>
   </div>
 </Layout>
 
@@ -68,6 +62,8 @@ import { Image } from "astro:assets";
     display: flex;
     flex-wrap: wrap;
     gap: var(--1);
+    margin: var(--5) 0;
+    font-weight: bold;
   }
 
   @keyframes glow {
@@ -81,13 +77,19 @@ import { Image } from "astro:assets";
 
   .hero-image {
     --anim-props: 900ms 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1 forwards;
-    display: flex;
+    display: none;
     align-items: center;
     position: relative;
     animation: glow var(--anim-props);
     border-radius: 50%;
     box-sizing: border-box;
     margin: var(--10);
+  }
+
+  @media (width >= 1200px) {
+    .hero-image {
+      display: flex;
+    }
   }
 
   .hero-image img {
@@ -125,5 +127,12 @@ import { Image } from "astro:assets";
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: var(--4);
+  }
+
+  .view-more a {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
   }
 </style>

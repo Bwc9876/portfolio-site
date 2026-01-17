@@ -25,7 +25,7 @@ const og = {
 ---
 
 <Layout title={entry.data.name} description={entry.data.summary} keywords={entry.data.tags} og={og}>
-  <div class="hero colrow-lg-rev">
+  <div class="hero">
     <div class="txt">
       <div class="project-header">
         <h1 class="gradient-text">{entry.data.name}</h1>
@@ -73,7 +73,7 @@ const og = {
         }
       </div>
     </div>
-    <div class="colrow-lg-rev img-container">
+    <div class="img-container">
       <Image
         transition:name={`project-img-${entry.slug}`}
         format="webp"
@@ -84,6 +84,7 @@ const og = {
       />
     </div>
   </div>
+  <h2>About This Project</h2>
   <Content />
 </Layout>
 
@@ -93,8 +94,8 @@ const og = {
   }
 
   div.project-header p {
-    font-size: var(--4);
-    margin-top: 0;
+    font-size: var(--2);
+    margin: 0;
   }
 
   .hero {
@@ -105,9 +106,24 @@ const og = {
     margin: var(--4) 0;
   }
 
-  @media (width <= 575px) {
+  @media (width <= 1300px) {
     .hero {
       flex-direction: column-reverse;
+      margin-top: var(--1);
+      gap: var(--2);
+      text-align: center;
+    }
+
+    .links, .ctas {
+      margin: auto;
+    }
+
+    .hero p {
+      margin: 0;
+    }
+    
+    div.project-header h1 {
+      margin-top: 0;
     }
   }
 
@@ -141,9 +157,10 @@ const og = {
   }
 
   .hero .img-container img {
-    border-radius: var(--2);
-    width: 100%;
-    object-fit: contain;
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
   }
 
   .links {

@@ -5,38 +5,45 @@ import { getCollection } from "astro:content";
 const blogEntries = await getCollection("posts");
 
 blogEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
 ---
 
 <Layout title="The Cowsay - Ben C's Blog">
   <h1>The Cowsay - Ben C's Blog</h1>
-  <p>Here you'll find my blog posts, most recent first</p>
+  <p>Here you'll find my blog posts, most recent first.</p>
   {
-    blogEntries.map((p, i) => (
-      <>
-        {i === 0 && <hr />}
-        <div>
-          <h2>
-            <a href={`/blog/${p.slug}`}>{p.data.title}</a>
-          </h2>
-          <p>{p.data.date.toDateString()}</p>
-        </div>
+    blogEntries.map((p) => (
+      <article>
+        <h2>
+          <a href={`/blog/${p.slug}`}>{p.data.title}</a>
+        </h2>
+        <p>{p.data.date.toLocaleDateString(undefined, options)}</p>
         <p>
           {p.data.summary}&nbsp;&nbsp;<a href={`/blog/${p.slug}`}>Read More</a>
         </p>
-        <hr />
-      </>
+      </article>
     ))
   }
 </Layout>
 
 <style>
-  div h2 {
-    margin-bottom: var(--1);
+  article {
+    margin: var(--4) 0;
   }
 
-  div p {
-    margin-top: 0;
-    font-size: var(--3);
+  article h2 {
+    margin-bottom: 0;
+  }
+
+  article p:nth-child(2) {
+    margin: 0;
+    font-size: var(--2);
   }
 
   h2 > a {

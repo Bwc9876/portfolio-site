@@ -1,7 +1,7 @@
 ---
 title: Work In Progress Friday - Screen Captures
 date: 2024-07-25
-summary: An adventure in making scripts to capture screen shots and recordings
+summary: An adventure in making scripts to capture screen shots and recordings.
 cowsay: A picture is worth a thousand words
 ---
 

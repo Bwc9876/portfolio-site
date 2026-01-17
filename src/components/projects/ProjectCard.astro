@@ -1,32 +1,55 @@
 ---
 import { Image } from "astro:assets";
+import backdrop from "@assets/backdrop.png";
 import type { CollectionEntry } from "astro:content";
 
 export interface Props {
   project: CollectionEntry<"projects">;
 }
 
+const stringToNumber = (str: string, seed = 3) => {
+    let h1 = 0xdeadbeef ^ seed,
+        h2 = 0x41c6ce57 ^ seed;
+    for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+};
+
+const getHueFromText = (text: string): string => `hue-rotate(${stringToNumber(text) % 360}deg)`;
+
 const { project } = Astro.props;
 ---
 
 <a href={`/projects/${project.slug}/`}>
-  <div class="card">
-    <div class="header">
-      <strong class="project-name">{project.data.name}</strong>
-      <div>
-        <Image
-          transition:name={`project-img-${project.slug}`}
-          format="webp"
-          src={project.data.image}
-          alt={project.data.name}
-        />
-      </div>
+  <article>
+    <div>
+      <Image
+        class="thumbnail"
+        transition:name={`project-img-${project.slug}`}
+        format="webp"
+        src={project.data.image}
+        alt={project.data.name}
+      />
+      <Image
+        style={{filter: getHueFromText(project.slug)}}
+        class="backdrop"
+        aria-role="presentation"
+        format="webp"
+        src={backdrop}
+        alt="Backdrop"
+      />
     </div>
-    <span>{project.data.summary}</span>
-    <div class="footer">
-      <small>{project.data.tags.join(" • ")}</small>
+    <div>
+    <h3 class="project-name">{project.data.name}</h3>
+    <small>{project.data.tags.join(" • ")}</small>
+    <p>{project.data.summary}</p>
     </div>
-  </div>
+  </article>
 </a>
 
 <style>
@@ -34,23 +57,24 @@ const { project } = Astro.props;
     text-decoration: none !important;
   }
 
-  div.card {
+  small {
+    margin: 0 var(--1);
+  }
+
+  h3 {
+    margin: var(--1) var(--1) 0 var(--1);
+  }
+
+  p {
+    margin: var(--1);
+  }
+
+  article {
     display: flex;
     flex-direction: column;
     height: 100%;
     background-color: var(--secondary);
-    padding: var(--2);
-    gap: var(--3);
     border-radius: 5px;
-  }
-
-  a {
-    margin: var(--4) 0;
-  }
-
-  a img {
-    height: var(--14);
-    border-radius: var(--2);
   }
 
   a:hover {
@@ -62,26 +86,6 @@ const { project } = Astro.props;
     transform: scale(1.06);
   }
 
-  div.header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: var(--2);
-  }
-
-  div.header > div {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  div.header > strong {
-    font-size: larger;
-  }
-
-  div.footer {
-    text-align: center;
-  }
-
   span {
     flex-grow: 1;
     text-align: center;
@@ -90,9 +94,40 @@ const { project } = Astro.props;
     justify-content: center;
   }
 
+	div:first-child {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+  div {
+    overflow: hidden;
+    position: relative;
+  }
+
+	img, div:first-child {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
   img {
+    position: relative;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    transition: transform ease-in-out 0.4s;
+    height: var(--14);
+  }
+
+  img.thumbnail {
+    z-index: 2;
+  }
+
+  img.backdrop {
+    position: absolute;
+    transform: scale(1.1);
+    inset: 0;
     object-fit: cover;
-    width: 90%;
-    transition: transform cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.4s;
+    filter: blur(6px);  
   }
 </style>

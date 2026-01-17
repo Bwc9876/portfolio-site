@@ -72,19 +72,22 @@ const { Content, headings } = await entry.render();
 </style>
 
 <style is:global>
+  p {
+    overflow: hidden;
+  }
+
   pre {
     padding: var(--small);
-    border-radius: var(--1);
+    border-radius: 5px;
     background-color: #24292e;
     box-sizing: border-box;
   }
 
   main img {
-    border: solid 1px var(--text) !important;
+    box-sizing: border-box;
     border-radius: 5px;
-    max-width: 100% !important;
-    margin: auto;
-    object-fit: contain;
+    max-width: 100%;
+    height: auto;
   }
 
   pre {

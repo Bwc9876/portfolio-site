@@ -33,12 +33,12 @@ const { project } = Astro.props;
         transition:name={`project-img-${project.slug}`}
         format="webp"
         src={project.data.image}
-        alt={project.data.name}
+        alt=""
       />
       <Image
         style={{filter: getHueFromText(project.slug)}}
         class="backdrop"
-        aria-role="presentation"
+				alt=""
         format="webp"
         src={backdrop}
         alt="Backdrop"

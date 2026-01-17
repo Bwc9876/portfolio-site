@@ -25,6 +25,11 @@ import { Image } from "astro:assets";
         <a href="#about-me" role="button" class="secondary">About Me</a>
       </div>
     </div>
+    <style>
+      .hide-lg {
+        display: none;
+      }
+    </style>
     <div class="hero-image hide-lg">
       <Image width={150} height={150} format="webp" alt="Ben C's Avatar" src={cow} />
     </div>

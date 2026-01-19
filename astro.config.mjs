@@ -10,6 +10,11 @@ export default defineConfig({
   site: "https://bwc9876.dev",
   compressHTML: true,
   integrations: [mdx(), icon(), sitemap(), playformInline()],
+  markdown: {
+    shikiConfig: {
+      theme: "catppuccin-mocha",
+    },
+  },
   vite: {
     css: {
       transformer: "lightningcss",

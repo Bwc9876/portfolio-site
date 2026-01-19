@@ -16,9 +16,9 @@ const { Content, headings } = await entry.render();
 
 <Layout title={entry.data.title} description={entry.data.summary}>
   <h1>{entry.data.title}</h1>
-  <CowSay text={entry.data.cowsay} />
   <div class="wrapper">
     <div>
+      <CowSay text={entry.data.cowsay} />
       <Content />
     </div>
     <div class="toc">
@@ -72,26 +72,21 @@ const { Content, headings } = await entry.render();
 </style>
 
 <style is:global>
-  p {
-    overflow: hidden;
-  }
-
   pre {
     padding: var(--small);
     border-radius: 5px;
-    background-color: #24292e;
     box-sizing: border-box;
+    background-color: var(--background-950) !important;
+    box-shadow: inset color(from var(--background-100) srgb r g b / 0.2) 0 0 6px;
+    overflow-x: auto;
+    width: 100%;
   }
 
-  main img {
+  img {
     box-sizing: border-box;
     border-radius: 5px;
     max-width: 100%;
     height: auto;
-  }
-
-  pre {
-    overflow-x: auto;
-    width: 100%;
+    box-shadow: color(from var(--accent) srgb r g b / 0.2) 0 0 6px;
   }
 </style>

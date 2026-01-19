@@ -34,20 +34,24 @@ features.
 To install grimblast, all I have to do is add it to my `environment.systemPackages`:
 
 ```nix
-environment.systemPackages = with pkgs; [
-  # ...
-  grimblast
-  libnotify # For notifications
-  xdg-utils # For opening files
-  # ...
-];
+{
+  environment.systemPackages = with pkgs; [
+    # ...
+    grimblast
+    libnotify # For notifications
+    xdg-utils # For opening files
+    # ...
+  ];
+}
 ```
 
 Grimblast will automatically save screenshots to `XDG_SCREENSHOTS_DIR`, I manually set this in my
 _home manager_ config with:
 
 ```nix
-xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+{
+  xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+}
 ```
 
 Grimblast will name the screenshots with the current date and time, which works for me.
@@ -141,12 +145,14 @@ as `PrintScreen`.
 In home manager I simply have to add these strings to my Hyprland binds
 
 ```nix
-wayland.windowManager.hyprland.settings.bind = [
-    # ...
-    ",Print,exec,nu ${../res/screenshot.nu}"
-    "SUPER SHIFT,S,exec,nu ${../res/screenshot.nu}"
-    # ...
-];
+{
+  wayland.windowManager.hyprland.settings.bind = [
+      # ...
+      ",Print,exec,nu ${../res/screenshot.nu}"
+      "SUPER SHIFT,S,exec,nu ${../res/screenshot.nu}"
+      # ...
+  ];
+}
 ```
 
 Now by switching to my new config (and making sure to stage `screenshot.nu` of course), I can take
@@ -162,14 +168,16 @@ long-term stuff I'll still prefer to use something like OBS.
 For the actual screen recording I'll be using [wf-recorder](https://github.com/ammen99/wf-recorder).
 
 ```nix
-environment.systemPackages = with pkgs; [
-  # ...
-  wf-recorder
-  libnotify # For notifications
-  xdg-utils # For opening files
-  slurp # Will explain this later
-  # ...
-];
+{
+  environment.systemPackages = with pkgs; [
+    # ...
+    wf-recorder
+    libnotify # For notifications
+    xdg-utils # For opening files
+    slurp # Will explain this later
+    # ...
+  ];
+}
 ```
 
 First and foremost location, I chose to use `~/Videos/Captures` for my recordings. I didn't set an
@@ -267,11 +275,13 @@ the script we're going to check if `wf-recorder` is already running, if this is 
 notification.
 
 ```nix
-wayland.windowManager.hyprland.settings.bindr = [
-    # ...
-    "SUPER SHIFT,R,exec,pkill wf-recorder --signal SIGINT || nu ${../res/screenrec.nu}"
-    # ...
-];
+{
+  wayland.windowManager.hyprland.settings.bindr = [
+      # ...
+      "SUPER SHIFT,R,exec,pkill wf-recorder --signal SIGINT || nu ${../res/screenrec.nu}"
+      # ...
+  ];
+}
 ```
 
 `pkill` here will exit with code `1` if it doesn't find any processes to kill, so the `||` will run

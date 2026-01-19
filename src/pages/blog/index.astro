@@ -15,8 +15,7 @@ const options = {
 ---
 
 <Layout title="The Cowsay - Ben C's Blog">
-  <h1>The Cowsay - Ben C's Blog</h1>
-  <p>Here you'll find my blog posts, most recent first.</p>
+  <h1 class="gradient-text">The Cowsay - Ben C's Blog</h1>
   {
     blogEntries.map((p) => (
       <article>
@@ -35,6 +34,11 @@ const options = {
 <style>
   article {
     margin: var(--4) 0;
+    border-top: 1px solid var(--text);
+  }
+
+  article:first-of-type {
+    border-top: none;
   }
 
   article h2 {

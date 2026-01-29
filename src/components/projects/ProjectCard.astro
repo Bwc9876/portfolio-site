@@ -8,16 +8,16 @@ export interface Props {
 }
 
 const stringToNumber = (str: string, seed = 3) => {
-    let h1 = 0xdeadbeef ^ seed,
-        h2 = 0x41c6ce57 ^ seed;
-    for (let i = 0, ch; i < str.length; i++) {
-        ch = str.charCodeAt(i);
-        h1 = Math.imul(h1 ^ ch, 2654435761);
-        h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+  let h1 = 0xdeadbeef ^ seed,
+    h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
 
 const getHueFromText = (text: string): string => `hue-rotate(${stringToNumber(text) % 360}deg)`;
@@ -36,18 +36,18 @@ const { project } = Astro.props;
         alt=""
       />
       <Image
-        style={{filter: getHueFromText(project.slug)}}
+        style={{ filter: getHueFromText(project.slug) }}
         class="backdrop"
-				alt=""
+        alt=""
         format="webp"
         src={backdrop}
         alt="Backdrop"
       />
     </div>
     <div>
-    <h3 class="project-name">{project.data.name}</h3>
-    <small>{project.data.tags.join(" • ")}</small>
-    <p>{project.data.summary}</p>
+      <h3 class="project-name">{project.data.name}</h3>
+      <small>{project.data.tags.join(" • ")}</small>
+      <p>{project.data.summary}</p>
     </div>
   </article>
 </a>
@@ -94,21 +94,22 @@ const { project } = Astro.props;
     justify-content: center;
   }
 
-	div:first-child {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+  div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   div {
     overflow: hidden;
     position: relative;
   }
 
-	img, div:first-child {
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-	}
+  img,
+  div:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 
   img {
     position: relative;
@@ -128,6 +129,6 @@ const { project } = Astro.props;
     transform: scale(1.1);
     inset: 0;
     object-fit: cover;
-    filter: blur(6px);  
+    filter: blur(6px);
   }
 </style>

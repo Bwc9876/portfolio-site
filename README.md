@@ -1,3 +1,5 @@
-# Portfolio Site
+# Website
 
-This repo contains files for my portfolio site made in [Astro](https://astro.build).
+This repo contains files for my site. 
+
+Made in [Astro](https://astro.build).

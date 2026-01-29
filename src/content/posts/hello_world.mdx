@@ -1,7 +1,7 @@
 ---
-title: Welcome to the Cowsay!
+title: Welcome to my blog!
 date: 2023-10-15
-summary: Welcome to the cowsay! A simple blog centered around cows.
+summary: How I built my blog
 cowsay: Hello World!
 ---
 
@@ -9,12 +9,10 @@ import CowSay from "@components/blog/CowSay.astro";
 
 ## Hey there
 
-Welcome to the cowsay! A simple blog centered around cows.
 I decided to make this blog as a way to track my progress in learning new things.
 I hope you enjoy your stay!
 
 This first post is going into a bit of detail about how I made this blog.
-Currently the site uses Astro so I'm going to stick with that for now.
 
 ## Making The Basic Blog
 
@@ -39,9 +37,9 @@ const blogPostsCollection = defineCollection({
 ```
 
 This contains the metadata each blog post will need to have in order for my site
-to render it. That `cowsay` is a bit special.
+to render it.
 
-Then, we simply export an object named `collections` which Astro will then pick
+Then, we export an object named `collections` which Astro will pick
 up and generate TS bindings for.
 
 ```ts
@@ -50,25 +48,21 @@ export const collections = {
 };
 ```
 
-Now we can get to writing some content! To do so simply make a folder with the
+Now we can get to writing some content! Make a folder with the
 same name as the _key_ of the collection you want to write for. In this case, `posts`.
 
-Then create a markdown file within and start writing! Here's a little excerpt
+Then create a markdown file and start writing! Here's a little excerpt
 of what [this page looks like](https://github.com/Bwc9876/portfolio-site/tree/main/src/content/posts/hello_world.mdx):
 
 ```md
 ---
-title: Welcome to the Cowsay!
+title: Welcome to my blog!
 date: 2023-10-15
-summary: Welcome to the cowsay! A simple blog centered around cows.
+summary: How I built my blog.
 cowsay: Hello World!
 ---
 
-## Hey there!
-
-Welcome to the cowsay! A simple blog centered around cows.
-I decided to make this blog as a way to track my progress in learning new things.
-I hope you enjoy your stay!
+## Hey there
 ```
 
 The frontmatter is the part between the `---` and `---`. This is where you put
@@ -118,8 +112,6 @@ const blogEntries = await getCollection("posts");
   }
 </Layout>
 ```
-
-![The rendered blog index page](@assets/blog/hw_index_page.png)
 
 Great! I'll probably fiddle with it in the future but it's a good start. Now we need to make a page for each post.
 To make my URLs look nice I'm going to create a subfolder within `blog` called `posts` and then place a `[...slug].astro` in there.
@@ -233,8 +225,6 @@ div.wrapper {
 }
 ```
 
-![The rendered blog post page with a table of contents](@assets/blog/hw_table_of_contents.png)
-
 ## The Cowsay
 
 Now for the fun part. I want to make a little cow that says something in the header of each post. I'm going to use the `cowsay` field in the frontmatter to do this.
@@ -293,8 +283,6 @@ I can also use it for admonitions in MDX!
 
 <CowSay color="warn" e="><" text="Warning!" />
 <CowSay color="info" e="^^" T="U" text="Info!" />
-
-I'll hold off on making an error one for now. Lest the cows get too angry.
 
 ## Conclusion
 

@@ -1,5 +1,5 @@
 ---
-title: Work In Progress Friday - Screen Captures
+title: Custom Screen Capture Flow
 date: 2024-07-25
 summary: An adventure in making scripts to capture screen shots and recordings.
 cowsay: A picture is worth a thousand words
@@ -137,7 +137,7 @@ match $choice {
 
 And that's it! I now have a fairly robust screenshot script.
 
-### Calling the Screenshot script
+### Screenshot Invocation
 
 Now in terms of actually calling it I'll be binding it to `Win` + `Shift` + `S` in Hyprland, as well
 as `PrintScreen`.
@@ -265,7 +265,7 @@ match $action {
 }
 ```
 
-### Calling the Recording script
+### Start/Stop Recording
 
 Now to actually call the script, I'll bind it to `Win` + `Shift` + `R` in Hyprland.
 

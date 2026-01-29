@@ -19,7 +19,7 @@ const { label, placement, icon, isExternal, overridePack, ...rest } = Astro.prop
   aria-label={label}
   data-tooltip={placement !== "inside" ? label : null}
   data-placement={placement !== "inside" ? placement : null}
-  target={isExternal ? "_blank" : ""}
+  target={isExternal ? "_blank" : null}
   {...rest}
 >
   <Icon width="1.2em" height="1.2em" name={`${overridePack ?? "bi"}:${icon}`} />

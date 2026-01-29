@@ -12,8 +12,8 @@ export default defineConfig({
   integrations: [mdx(), icon(), sitemap(), playformInline()],
   markdown: {
     shikiConfig: {
-      theme: "catppuccin-mocha",
-    },
+      theme: "catppuccin-mocha"
+    }
   },
   vite: {
     css: {

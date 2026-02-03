@@ -5,7 +5,6 @@
 #let email = "bc1016579@wcupa.edu"
 #let github = "github.com/Bwc9876"
 #let linkedin = "linkedin.com/in/bwc9876"
-#let phone = "(610)-906-9343"
 #let personal-site = "bwc9876.dev"
 
 #set document(
@@ -18,7 +17,6 @@
   email: email,
   //github: github,
   //linkedin: linkedin,
-  phone: phone,
   personal-site: personal-site,
   accent-color: "#26428b",
   font: "New Computer Modern",
@@ -47,7 +45,7 @@
   location: "West Chester, PA",
   dates: dates-helper(
     start-date: "Aug. 2023",
-    end-date: "Dec. 2026 (Projected)",
+    end-date: "May 2027 (Projected)",
   ),
   degree: "Bachelor of Computer Science, Minor in Professional and Technical Writing",
   consistent: true,
